@@ -22,11 +22,21 @@ public class CardsController {
     public User getUser(){
         return SESSION_USER.get();
     }
+
     //出牌
+    //play the cards
     @PostMapping("/pay/{roomCode}")
     public Result pay(@PathVariable Integer roomCode, @RequestBody PokerCombination pokerCombination){
         GameContext gameContext = GAME_ROOM.get(roomCode);
         gameContext.pay(pokerCombination, getUser().getId());
+        return Result.success();
+    }
+    //跳过
+    // Execute pass operation
+    @PostMapping("/pass/{roomCode}")
+    public Result pay(@PathVariable Integer roomCode){
+        GameContext gameContext = GAME_ROOM.get(roomCode);
+        gameContext.pass(getUser().getId());
         return Result.success();
     }
 }
