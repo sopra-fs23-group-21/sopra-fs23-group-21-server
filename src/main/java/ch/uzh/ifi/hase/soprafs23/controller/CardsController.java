@@ -39,4 +39,13 @@ public class CardsController {
         gameContext.pass(getUser().getId());
         return Result.success();
     }
+
+    //准备,这里是跳过以后继续游戏
+    // continue the game
+    @PostMapping("/{roomCode}")
+    public Result continueGame(@PathVariable Integer roomCode){
+        GameContext gameContext = GAME_ROOM.get(roomCode);
+        gameContext.continueGame(getUser().getId());
+        return Result.success();
+    }
 }
