@@ -14,14 +14,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 @RequestMapping("/cards")
 @RestController
-public class CardsController {
+public class CardsController extends BaseController {
     public static final Map<Integer,GameContext> GAME_ROOM= new ConcurrentHashMap<>();
 
     public static final AtomicInteger add= new AtomicInteger();
-    public static final ThreadLocal<User> SESSION_USER = new ThreadLocal<>();
-    public User getUser(){
-        return SESSION_USER.get();
-    }
+
 
     //出牌
     //play the cards
