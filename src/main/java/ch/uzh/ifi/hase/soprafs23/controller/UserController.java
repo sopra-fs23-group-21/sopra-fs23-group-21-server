@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 
 /**
  * User Controller
@@ -23,9 +25,16 @@ public class UserController {
 
   private final UserService userService;
 
-  UserController(UserService userService) {
-    this.userService = userService;
-  }
+  //UserController(UserService userService) {
+//    this.userService = userService;
+//  }
+
+    //register
+    @PostMapping("/register")
+    public Object register(@RequestBody User user){
+        userService.createUser(user);
+        return user;
+    }
 
   @GetMapping("/users")
   @ResponseStatus(HttpStatus.OK)
