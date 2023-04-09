@@ -4,7 +4,7 @@ For each week, everyone should write down your contributions with following info
 2. link to the Github issues you worked on
 3. optional: a short description of your work
 
-##Week1(Mar 27- April 2)
+#Week1(Mar 27- April 2)
 
 Jing Cao
 --Map images to different cards#23
@@ -19,7 +19,7 @@ Weimin Yang
    - define combination types  #18
   
 
-##Week1(April 3 - April 9)
+#Week1(April 3 - April 9)
 
 Jing Cao
 -Implement server-side function to create user#42
