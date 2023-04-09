@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -47,6 +48,22 @@ public class UserService {
     log.debug("Created Information for User: {}", newUser);
     return newUser;
   }
+
+    /***
+     * login(check if the username is not null and password is correct)
+     * @param userName
+     * @param password
+     * @return
+     */
+    public User login(String userName, String password){
+      User user = userRepository.findByUsername(userName);
+      if (Objects.nonNull(user) && user.getPassword().equals(password)){
+          user.setToken(UUID.randomUUID().toString());
+          user.setStatus(UserStatus.ONLINE);
+          return user;
+      }
+      throw new RuntimeException("Password is not correct");
+    }
 
   /**
    * This is a helper method that will check the uniqueness criteria of the username and the name
