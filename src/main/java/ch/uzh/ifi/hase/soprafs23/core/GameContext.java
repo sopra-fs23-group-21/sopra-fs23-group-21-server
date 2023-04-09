@@ -68,5 +68,21 @@ public class GameContext {
         }
     }
 
+    /**
+     * 初始化牌组- initial the card
+     */
+    public void initPokers(){
+        pokers = Lists.newArrayList(Poker.builder().value(14).build(),
+                Poker.builder().value(15).build());
+        for (int i = 1; i < 14; i++) {
+            for (int j = 1; j < 5; j++) {
+                pokers.add(Poker.builder()
+                        .value(i)
+                        .type(j)
+                        .build());
+            }
+        }
+    }
+
 
 }
