@@ -7,6 +7,7 @@ For each week, everyone should write down your contributions with following info
 Week1(Mar 27- April 2)
 
 Jing Cao
+-Map images to different cards#23
 
 Xiong Li
 
@@ -21,6 +22,8 @@ Weimin Yang
 Week1(April 3 - April 9)
 
 Jing Cao
+-Implement server-side function to create user#42
+-Implement server-side validation to ensure that the user login data is valid and meets all necessary requirements, including password matching and checking that the user exists in the database.#41
 
 Xiong Li
 
