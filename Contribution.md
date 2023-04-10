@@ -30,7 +30,7 @@ Jing Cao
 Xiong Li
 
 Zhi Wang 
-- Implement functions to record the cards last played.#34
+- Implement functions for the current user to skip #36
 
 Weimin Yang
  - short description of my work:
