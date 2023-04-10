@@ -12,8 +12,8 @@ Jing Cao
 Xiong Li
 
 Zhi Wang 
-Define the card number#20
-Implement the card type (about the game rule)#22
+- Define the card number#20
+- Implement the card type (about the game rule)#22
 
 Weimin Yang
  - short description of my work:define user entity and combinatin typies 
@@ -30,7 +30,7 @@ Jing Cao
 Xiong Li
 
 Zhi Wang 
-Implement functions to record the cards last played.#34
+- Implement functions to record the cards last played.#34
 
 Weimin Yang
  - short description of my work:
