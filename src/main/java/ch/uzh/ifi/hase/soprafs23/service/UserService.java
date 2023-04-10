@@ -65,6 +65,17 @@ public class UserService {
       throw new RuntimeException("Password is not correct");
     }
 
+
+    /**
+     * offline
+     * @param old
+     */
+    public void offline(User old){
+        User byId = userRepository.findById(Long.valueOf(old.getId())).get();
+        byId.setStatus(UserStatus.OFFLINE);
+        userRepository.save(byId);
+    }
+
   /**
    * This is a helper method that will check the uniqueness criteria of the username and the name
    * defined in the User entity. The method will do nothing if the input is unique and throw an
