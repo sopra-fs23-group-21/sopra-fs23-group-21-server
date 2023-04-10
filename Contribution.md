@@ -30,7 +30,7 @@ Jing Cao
 Xiong Li
 
 Zhi Wang 
-- Implement functions for the current user to skip #36
+- Implement functions for the current user to skip(pass) #36
 
 Weimin Yang
  - short description of my work:
