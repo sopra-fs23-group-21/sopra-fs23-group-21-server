@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -66,6 +67,25 @@ public class GameContext {
         if(collect.size()==3){
             sendCard();
         }
+    }
+
+
+    /**
+     * 跳过
+     */
+    public void pass(Integer id){
+        if(!this.userList.get(this.now).getId().equals(id)){
+            throw new RuntimeException("不是你的回合");
+        }
+        if(Objects.isNull(last)){
+            throw new RuntimeException("先手，不能跳过");
+        }
+        //下一位
+        //如果最后一手牌和下一位是同一个用户 则重置上一首牌
+        if(now == this.userList.indexOf( getUser(this.last.getUserId()))){
+            this.last = null;
+        }
+
     }
 
 
