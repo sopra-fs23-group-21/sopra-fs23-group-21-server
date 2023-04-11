@@ -2,6 +2,7 @@ package ch.uzh.ifi.hase.soprafs23.service;
 
 import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
+import ch.uzh.ifi.hase.soprafs23.model.UserReqVo;
 import ch.uzh.ifi.hase.soprafs23.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,6 +64,33 @@ public class UserService {
           return user;
       }
       throw new RuntimeException("Password is not correct");
+    }
+
+
+    /**
+     * offline(set status to offline)
+     * @param old
+     */
+    public void offline(User old){
+        User byId = userRepository.findById(Long.valueOf(old.getId())).get();
+        byId.setStatus(UserStatus.OFFLINE);
+        userRepository.save(byId);
+    }
+
+    /**
+     * update password
+     * @param userReqVo
+     * @param old
+     * @return
+     */
+    public User updatePassword(UserReqVo userReqVo, User old){
+        User byId = userRepository.findById(Long.valueOf(old.getId())).get();
+        if(userReqVo.getPassword().equals(userReqVo.getRepeatPassword())){
+            byId.setPassword(userReqVo.getRepeatPassword());
+            User save = userRepository.save(byId);
+            return save;
+        }
+        throw new RuntimeException("The password is different!");
     }
 
   /**

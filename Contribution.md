@@ -4,14 +4,19 @@ For each week, everyone should write down your contributions with following info
 2. link to the Github issues you worked on
 3. optional: a short description of your work
 
-#Week1(Mar 27- April 2)
+#Week2(Mar 27- April 2)
 
 Jing Cao
---Map images to different cards#23
+- Map images to different cards#23
 
 Xiong Li
+- Check the user's cards amount #17
+- Implement functions to check whether a certain combination is possible #35
+- Implement functions to record the cards last played #34
 
 Zhi Wang 
+- Define the card number#20
+- Implement the card type (about the game rule)#22
 
 Weimin Yang
  - short description of my work:define user entity and combinatin typies 
@@ -22,12 +27,16 @@ Weimin Yang
 #Week1(April 3 - April 9)
 
 Jing Cao
--Implement server-side function to create user#42
--Implement server-side validation to ensure that the user login data is valid and meets all necessary requirements, including password matching and checking that the user exists in the database.#41
+- Implement server-side function to create user#42
+- Implement server-side validation to ensure that the user login data is valid and meets all necessary requirements, including password matching and checking that the user exists in the database.#41
 
 Xiong Li
 
+- Define the card priority(game rule) #19
+- Assign cards to different types of players # 26
+
 Zhi Wang 
+- Implement functions for the current user to skip(pass) #36
 
 Weimin Yang
  - short description of my work:
