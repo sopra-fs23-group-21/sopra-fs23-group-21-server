@@ -40,6 +40,6 @@ Zhi Wang
 - Implement functions to check whether a certain combination is possible（Completed the check rule of single card）#35
 
 Weimin Yang
- - define circularlinkedlist to make sure this is a turn-based game #35
+ - define circularlinkedlist to make sure this is a turn-based game # 48
  - user can update their profit # 47
 
