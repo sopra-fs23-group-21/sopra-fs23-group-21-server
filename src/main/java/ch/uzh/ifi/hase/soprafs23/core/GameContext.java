@@ -69,6 +69,20 @@ public class GameContext {
         }
     }
 
+    /***
+     * 出牌 to 未知牌型 出牌错误
+     * @param pokerCombination
+     */
+    public boolean pay(PokerCombination pokerCombination,Integer userId){
+
+        // 扣减手牌
+        this.last = pokerCombination;
+        UserVo userVo = getUser(pokerCombination.getUserId());
+        userVo.getHandCard().removeAll(pokerCombination.getCard());
+
+        return true;
+    }
+
 
     /**
      * 跳过
