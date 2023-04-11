@@ -77,11 +77,11 @@ public class UserController extends BaseController{
 //    return DTOMapper.INSTANCE.convertEntityToUserGetDTO(createdUser);
 //  }
 //修改资料
-@PutMapping("/updateDetail")
-public Result updateDetail(@RequestBody UserReqVo user ){
-    userService.updateDetail(user,getUser());
-    return Result.success();
-}
+    @PutMapping("/updateDetail")
+    public Result updateDetail(@RequestBody UserReqVo user ){
+        userService.updateDetail(user,getUser());
+        return Result.success();
+    }
 
 
     @PutMapping("/offline")
