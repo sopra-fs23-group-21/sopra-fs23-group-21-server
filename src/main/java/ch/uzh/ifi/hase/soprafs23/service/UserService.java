@@ -119,4 +119,20 @@ public class UserService {
           HttpStatus.BAD_REQUEST, String.format(baseErrorMessage, "name", "is"));
     }
   }
+
+    /**
+     * 修改资料
+     * @param userReqVo
+     * @return
+     */
+    public User updateDetail(UserReqVo userReqVo,User old){
+        User byId = userRepository.findById(old.getId()).get();
+        byId.setName(userReqVo.getName());
+        if(userReqVo.getPassword().equals(userReqVo.getRepeatPassword())){
+            byId.setPassword(userReqVo.getRepeatPassword());
+            User save = userRepository.save(byId);
+            return save;
+        }
+        throw new RuntimeException("两次密码不一致！");
+    }
 }
