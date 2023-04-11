@@ -41,5 +41,5 @@ Zhi Wang
 
 Weimin Yang
  - define circularlinkedlist to make sure this is a turn-based game # 48
- - user can update their profit # 47
+ - user can update their profit # 49
 
