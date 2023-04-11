@@ -39,6 +39,6 @@ Zhi Wang
 - Implement functions for the current user to skip(pass) #36
 
 Weimin Yang
- - short description of my work:
-  - define 
+ - define circularlinkedlist to make sure this is a turn-based game #35
+ - user can update their profit # 47
 
