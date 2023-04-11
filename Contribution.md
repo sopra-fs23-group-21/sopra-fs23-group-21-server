@@ -37,6 +37,7 @@ Xiong Li
 
 Zhi Wang 
 - Implement functions for the current user to skip(pass) #36
+- Implement functions to check whether a certain combination is possible（Completed the check rule of single card）#35
 
 Weimin Yang
  - define circularlinkedlist to make sure this is a turn-based game #35
