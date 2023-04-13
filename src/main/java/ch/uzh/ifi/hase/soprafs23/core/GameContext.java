@@ -103,41 +103,7 @@ public class GameContext {
         );
     }
 
-    /**
-     * 发牌
-     */
-    public void sendCard() {
 
-        this.start = (int) (Math.random() * 3);
-
-        initPokers();
-        //发牌
-        int i = this.start;
-
-        while (pokers.size() != 3) {
-
-            UserVo userVo = userList.get(i);
-            //随机抽取一张底牌
-            int num = (int) (Math.random() * pokers.size());
-
-            Poker poker = pokers.get(num);
-
-            pokers.remove(poker);
-            //加入手牌
-            userVo.getHandCard().add(poker);
-
-            if (++i == 3) {
-                i = 0;
-            }
-        }
-
-        gameStatus = 2;
-
-        this.now = start;
-        //同步牌
-        sync();
-
-    }
 
     /**
      * 初始化牌组
@@ -210,6 +176,42 @@ public class GameContext {
         if (now == this.userList.indexOf(getUser(this.last.getUserId()))) {
             this.last = null;
         }
+
+    }
+
+    /**
+     * 发牌
+     */
+    public void sendCard(){
+
+        this.start = (int) (Math.random() * 3);
+
+        initPokers();
+        //发牌
+        int i = this.start;
+
+        while (pokers.size()!=3) {
+
+            UserVo userVo = userList.get(i);
+            //随机抽取一张底牌
+            int num = (int) (Math.random() * pokers.size());
+
+            Poker poker = pokers.get(num);
+
+            pokers.remove(poker);
+            //加入手牌
+            userVo.getHandCard().add(poker);
+
+            if(++i == 3){
+                i = 0;
+            }
+        }
+
+        gameStatus = 2;
+
+        this.now = start;
+        //同步牌
+        sync();
 
     }
 
