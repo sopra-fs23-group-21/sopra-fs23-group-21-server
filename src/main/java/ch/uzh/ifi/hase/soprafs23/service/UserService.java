@@ -92,6 +92,9 @@ public class UserService {
         }
         throw new RuntimeException("The password is different!");
     }
+    public User getUserByToken(String token){
+        return userRepository.findByToken(token);
+    }
 
   /**
    * This is a helper method that will check the uniqueness criteria of the username and the name
@@ -126,7 +129,7 @@ public class UserService {
      * @return
      */
     public User updateDetail(UserReqVo userReqVo,User old){
-        User byId = userRepository.findById(old.getId()).get();
+        User byId = userRepository.findById(Long.valueOf(old.getId())).get();
         byId.setName(userReqVo.getName());
         if(userReqVo.getPassword().equals(userReqVo.getRepeatPassword())){
             byId.setPassword(userReqVo.getRepeatPassword());
