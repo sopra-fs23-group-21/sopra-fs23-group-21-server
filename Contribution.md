@@ -42,9 +42,13 @@ For each week, everyone should write down your contributions with following info
 - Implement functions to check whether a certain combination is possible（Completed the check rule of single card）#35
 
 ## Weimin Yang
- - define circularlinkedlist to make sure this is a turn-based game # 48
- - user can update their profit # 49
+ - define circularlinkedlist to make sure this is a turn-based game #48
+ - user can update their profit #49
 
 # Week3(April 10 - April 16)
 ## Jing Cao
 - Implement interceptor to config route to check user login status #50
+
+
+## Weimin Yang
+ - Landlord campaign, including notifying players to campaign for landlord and confirming landlord #26
