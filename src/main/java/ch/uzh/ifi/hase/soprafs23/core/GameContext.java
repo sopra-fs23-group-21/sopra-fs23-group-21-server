@@ -6,6 +6,7 @@ import ch.uzh.ifi.hase.soprafs23.model.UserVo;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import lombok.Data;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Objects;
@@ -210,6 +211,87 @@ public class GameContext {
             this.last = null;
         }
 
+    }
+
+    /**
+     * 通知抢地主
+     */
+    public void contend(){
+        List<UserVo> collect = this.userList.stream()
+                .filter(userVo -> Objects.isNull(userVo.getContend())).collect(Collectors.toList());
+        //第二轮抢地主 如果还有两位或者三位争取 只看首位是否需要
+        if(CollectionUtils.isEmpty(collect)){
+            UserVo userVo = this.userList.get(this.start);
+            this.now = this.start;
+            if(!userVo.getContend()){
+                next();
+            }
+        }
+    }
+
+    /**
+     * 抢地主
+     * @param id
+     * @param isContend
+     */
+    public void contend(Integer id,boolean isContend){
+        //修改用户抢地主状态
+        List<UserVo> collect = this.userList.stream()
+                .filter(user->user.getId().equals(id))
+                .collect(Collectors.toList());
+        for (UserVo userVo : collect) {
+            //如果已经存在状态 则表示为第二轮选举 直接选为地主 其他玩家放弃选择
+            if(Objects.nonNull(userVo.getContend()) && isContend){
+                this.userList.stream()
+                        .filter(user->
+                                !user.getId().equals(id))
+                        .forEach(user->
+                                user.setContend(false));
+                //放弃则 上一玩家为地主
+            }
+            userVo.setContend(isContend);
+        }
+
+        next();
+
+        //通知地主分配
+        elect();
+
+        sync();
+    }
+
+    /**
+     * 分配地主
+     */
+    public void elect(){
+
+        for (UserVo userVo : this.userList) {
+            if(Objects.isNull(userVo.getContend())){
+                //通知下一个
+                contend();
+                return;
+            }
+        }
+
+        //判断是否可以直接获取地主
+        List<UserVo> collect = this.userList.stream()
+                .filter(UserVo::getContend).collect(Collectors.toList());
+        if(collect.size() != 1){
+            //通知下一个
+            contend();
+            return;
+        }
+        UserVo userVo = collect.get(0);
+        //添加到牌组
+        userVo.getHandCard().addAll(this.pokers);
+
+        this.start = this.userList.indexOf(userVo);
+
+        this.now = this.start;
+
+        this.gameStatus =3;
+
+        sync();
     }
 
 

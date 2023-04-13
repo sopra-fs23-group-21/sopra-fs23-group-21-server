@@ -45,4 +45,11 @@ public class CardsController extends BaseController {
         gameContext.continueGame(getUser().getId());
         return Result.success();
     }
+    //抢地主
+    @PostMapping("/contend")
+    public Result contend(Integer roomCode,boolean isContend){
+        GameContext gameContext = GAME_ROOM.get(roomCode);
+        gameContext.contend(getUser().getId(), isContend);
+        return Result.success();
+    }
 }
