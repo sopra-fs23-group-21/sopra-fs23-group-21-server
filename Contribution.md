@@ -29,6 +29,8 @@ Weimin Yang
 Jing Cao
 - Implement server-side function to create user#42
 - Implement server-side validation to ensure that the user login data is valid and meets all necessary requirements, including password matching and checking that the user exists in the database.#41
+- Implement logout function to let users logout if they want #44
+- Implement the function to change password#45
 
 Xiong Li
 
@@ -43,3 +45,6 @@ Weimin Yang
  - define circularlinkedlist to make sure this is a turn-based game # 48
  - user can update their profit # 49
 
+#Week2(April 10 - April 16)
+Jing Cao
+- Implement interceptor to config route to check user login status #50
