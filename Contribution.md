@@ -48,6 +48,7 @@ For each week, everyone should write down your contributions with following info
 # Week3(April 10 - April 16)
 ## Jing Cao
 - Implement interceptor to config route to check user login status #50
+- Implement functions to set the game status as over when the game is over #30
 
 
 ## Weimin Yang
