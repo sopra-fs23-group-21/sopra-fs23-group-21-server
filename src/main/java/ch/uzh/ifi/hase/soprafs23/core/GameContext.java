@@ -59,6 +59,8 @@ public class GameContext {
      */
     private Integer winner;
 
+    private int gameStatus = 1;
+
     public UserVo getUser(Integer id) {
         for (UserVo userVo : this.userList) {
             if (userVo.getId().equals(id)) {
@@ -294,6 +296,15 @@ public class GameContext {
         this.gameStatus =3;
 
         sync();
+    }
+
+    private void gameOver(){
+        this.isGameOver = true;
+        this.userList.forEach(list->{
+            list.setContend(null);
+            list.setContinue(false);
+        });
+        this.gameStatus = 4;
     }
 
 
