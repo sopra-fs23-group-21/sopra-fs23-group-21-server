@@ -214,7 +214,25 @@ public class PokerCombination {
         return true;
     }
 
-
+    /**
+     * 是否炸弹 determine weather it is bomb
+     */
+    private boolean  isFour( List<Poker> card){
+        if(card.size()!=4){
+            return false;
+        }
+        Integer lastNum = null;
+        for (Poker next : card) {
+            if(Objects.isNull(lastNum)){
+                lastNum = next.getValue();
+            }else {
+                if(lastNum != next.getValue()){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     /**
      * 是否是王炸
