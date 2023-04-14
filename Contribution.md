@@ -53,3 +53,4 @@ For each week, everyone should write down your contributions with following info
 ## Weimin Yang
  - Landlord campaign, including notifying players to campaign for landlord and confirming landlord #26
  - Deal 17 cards to each player and change the game state to the state of campaigning landlord #27
+ - determine the card combition type whether it is 'bomb' #52
