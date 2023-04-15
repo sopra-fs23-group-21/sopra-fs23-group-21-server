@@ -18,6 +18,9 @@ public class Poker implements Comparable<Poker>{
      */
     private Integer value;
 
+//    suit: 1 heart 2 diamond 3 clubs 4 spades
+
+    private Integer type;
 
     @Override
     public int compareTo(Poker o) {
