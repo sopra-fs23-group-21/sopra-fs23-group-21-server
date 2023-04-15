@@ -79,6 +79,17 @@ public class PokerCombination {
      * wather the value of 'four and two' is biggest
      * @param pokerCombination
      */
+    public Integer isFourAndThreeMaxValue(PokerCombination pokerCombination){
+        List<Poker> num = pokerCombination.getCard();
+        Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
+        List<Integer> head = Lists.newArrayList();
+        for (Map.Entry<Integer, List<Poker>> integerListEntry : collect.entrySet()) {
+            if (integerListEntry.getValue().size()==4) {
+                head.add(integerListEntry.getKey());
+            }
+        }
+        return Collections.max(head);
+    }
 
 
     /**
@@ -250,8 +261,8 @@ public class PokerCombination {
      * @param card
      * @return
      */
-    private boolean  isDoubleThree(List<Poker> card){
-        if(card.size()<8){
+    private boolean  isDoubleThree(List<Poker> card) {
+        if (card.size() < 8) {
             return false;
         }
         //通过数值分组
@@ -262,17 +273,18 @@ public class PokerCombination {
         //三张的牌
         List<Integer> head = Lists.newArrayList();
         for (Map.Entry<Integer, List<Poker>> c : cardMap.entrySet()) {
-            if(c.getValue().size()==3){
+            if (c.getValue().size() == 3) {
                 head.add(c.getKey());
-            }else {
+            }
+            else {
                 tail.add(c.getKey());
             }
         }
-        if (head.size()<2) {
+        if (head.size() < 2) {
             return false;
         }
         //判断情况一 三带一            判断情况二 是否是三代二
-        if((card.size()-head.size()*3) != head.size() && tail.size() != head.size()){
+        if ((card.size() - head.size() * 3) != head.size() && tail.size() != head.size()) {
 
             return false;
         }
@@ -281,25 +293,54 @@ public class PokerCombination {
         Collections.sort(head);
         Integer tempNumber = null;
         for (Integer next : head) {
-            if(Objects.nonNull(tempNumber)){
-                if(tempNumber+1 != next){
+            if (Objects.nonNull(tempNumber)) {
+                if (tempNumber + 1 != next) {
                     return false;
                 }
             }
             tempNumber = next;
         }
         //13 为牌2
-        return tempNumber <13;
-
-
-
-        /**
-         * whether it is 'four and two'是否是四带二
-         * @param card
-         * @return
-         */
-    
+        return tempNumber < 13;
     }
+
+    /**
+    * whether it is 'four and two'是否是四带二
+    * @param card
+    * @return
+    */
+    private boolean  isFourAndThree(List<Poker> card){
+        if(card.size()<6){
+            return false;
+        }
+        //通过数值分组
+        Map<Integer, List<Poker>> cardMap = card.stream().collect(Collectors.groupingBy(Poker::getValue));
+
+        //带牌
+        List<Integer> tail = Lists.newArrayList();
+        //四张的牌
+        List<Integer> head = Lists.newArrayList();
+        for (Map.Entry<Integer, List<Poker>> c : cardMap.entrySet()) {
+            if(c.getValue().size()==4){
+                head.add(c.getKey());
+            }else {
+                tail.add(c.getKey());
+            }
+        }
+        if(head.size()==0){
+            return false;
+        }
+
+        //判断情况一 四带二            判断情况二  四带二对
+        if(card.size() !=6 && tail.size() != 2){
+            return false;
+        }
+
+        //13 为牌2
+        return true;
+    }
+
+
 
 
 
