@@ -51,6 +51,8 @@ For each week, everyone should write down your contributions with following info
 - Implement functions to set the game status as over when the game is over #30
 - Implement the function that compare the cards value, type and combination #33
 - Define the card combination type #58
+- Implement the function to determine the card combination of Airplane(double three) #59
+- Implement the function to define the maximum of "Airplane"(Double Three) #61
 
 
 ## Weimin Yang
