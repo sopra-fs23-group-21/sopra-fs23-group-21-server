@@ -265,6 +265,16 @@ public class GameContext {
     }
 
     /**
+     * 下一个
+     */
+    private void next() {
+        this.now = this.now+1;
+        if(this.now>){
+            this.now=0;
+        }
+    }
+
+    /**
      * 分配地主
      */
     public void elect(){
