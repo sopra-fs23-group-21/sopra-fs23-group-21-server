@@ -1,5 +1,6 @@
 package ch.uzh.ifi.hase.soprafs23.core;
 
+import ch.uzh.ifi.hase.soprafs23.config.WebSocketConfigOne;
 import ch.uzh.ifi.hase.soprafs23.model.Poker;
 import ch.uzh.ifi.hase.soprafs23.model.Result;
 import ch.uzh.ifi.hase.soprafs23.model.UserVo;
@@ -121,6 +122,15 @@ public class GameContext {
                         .build());
             }
         }
+    }
+
+    /**
+     * get poker combination
+     * @param id
+     * @return
+     */
+    public List<PokerCombination> getPokerCombination(Integer id){
+        return null;
     }
 
     public void continueGame(Integer userId) {
