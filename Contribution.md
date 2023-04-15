@@ -49,6 +49,7 @@ For each week, everyone should write down your contributions with following info
 ## Jing Cao
 - Implement interceptor to config route to check user login status #50
 - Implement functions to set the game status as over when the game is over #30
+- Implement the function that compare the cards value, type and combination #33
 
 
 ## Weimin Yang
