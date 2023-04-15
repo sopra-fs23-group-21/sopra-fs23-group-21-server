@@ -233,28 +233,8 @@ public class PokerCombination {
     }
 
     /**
-     * 是否是顺子
+     * whether the combination type is 'Chain'-是否是顺子
      */
-    private boolean  isContinuation(List<Poker> card){
-        if(card.size()<5){
-            return false;
-        }
-        Collections.sort(card);
-        Integer tempNumber = null;
-        for (Poker next : card) {
-            if(Objects.nonNull(tempNumber)){
-                if(tempNumber+1 != next.getValue()){
-                    return false;
-                }
-            }
-            tempNumber = next.getValue();
-        }
-        //13 为牌2
-        return tempNumber <13;
-    }
-    //
-//    DOUBLECONTINUATION(1),
-
 
     /**
     * whether it is 'four and two'是否是四带二
