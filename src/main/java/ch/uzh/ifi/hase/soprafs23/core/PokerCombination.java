@@ -351,4 +351,21 @@ public class PokerCombination {
         }
         return tempNumber < 13;
     }
+
+    /**
+     * 飞机最大值
+     * @param pokerCombination
+     * @return
+     */
+    private Integer getDoubleThreeMaxValue(PokerCombination pokerCombination){
+        List<Poker> num = pokerCombination.getCard();
+        Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
+        List<Integer> head = Lists.newArrayList();
+        for (Map.Entry<Integer, List<Poker>> integerListEntry: collect.entrySet()){
+            if(integerListEntry.getValue().size()==3){
+                head.add(integerListEntry.getKey());
+            }
+        }
+        return Collections.max(head);
+    }
 }
