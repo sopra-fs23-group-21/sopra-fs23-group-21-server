@@ -136,35 +136,6 @@ public class PokerCombination {
 
 
     /**
-     * 判断类型
-     */
-    public void  initType(){
-        if(card.size()==1){
-            this.combinationType = CombinationType.ONE;
-        }else if(isTwo(card)){
-            this.combinationType = CombinationType.TWO;
-        }else  if(isFour(card)){
-            this.combinationType = CombinationType.FOUR;
-        }else if(isThreeAndOne(card)){
-            this.combinationType = CombinationType.THREEANDONE;
-        }else if(isThree(card)){
-            this.combinationType = CombinationType.THREE;
-        }else if(isDoubleKing(card)){
-            this.combinationType = CombinationType.DOUBLEKING;
-        }else if(isContinuation(card)){
-            this.combinationType = CombinationType.CONTINUATION;
-        }else if(isDoubleContinuation(card)){
-            this.combinationType = CombinationType.DOUBLECONTINUATION;
-        }else if(isDoubleThree(card)){
-            this.combinationType = CombinationType.DOUBLETHREE;
-        }else  if(isFourAndThree(card)){
-            this.combinationType = CombinationType.FOURANDTHREE;
-        }else{
-            throw new RuntimeException("未知牌型");
-        }
-    }
-
-    /**
      * 是否是 牌型对
      */
     private boolean  isTwo( List<Poker> card){
