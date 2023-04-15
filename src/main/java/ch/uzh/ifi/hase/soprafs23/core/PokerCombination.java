@@ -122,22 +122,6 @@ public class PokerCombination {
     }
 
 
-    /**
-     * 飞机找到三张最大的牌值
-     * @param pokerCombination
-     * @return
-     */
-    private Integer getDoubleThreeMaxValue(PokerCombination pokerCombination){
-        List<Poker> num = pokerCombination.getCard();
-        Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
-        List<Integer> head = Lists.newArrayList();
-        for (Map.Entry<Integer, List<Poker>> integerListEntry : collect.entrySet()) {
-            if (integerListEntry.getValue().size()==3) {
-                head.add(integerListEntry.getKey());
-            }
-        }
-        return Collections.max(head);
-    }
 
     /**
      * 连队的最大值
@@ -270,83 +254,7 @@ public class PokerCombination {
     }
     //
 //    DOUBLECONTINUATION(1),
-    /**
-     * 是否是连队
-     */
-    private boolean  isDoubleContinuation(List<Poker> card){
-        if(card.size()<6 || card.size()%2==1){
-            return false;
-        }
-        Map<Integer, List<Poker>> cardMap = card.stream().collect(Collectors.groupingBy(Poker::getValue));
-        //判断是否都是一对
-        for (Map.Entry<Integer, List<Poker>> c : cardMap.entrySet()) {
-            if(c.getValue().size()!=2){
-                return false;
-            }
-        }
-        //是否是顺序 判断是否都为顺
-        List<Integer> key = cardMap.keySet().stream().collect(Collectors.toList());
-        Collections.sort(key);
-        Integer tempNumber = null;
-        for (Integer next : key) {
-            if(Objects.nonNull(tempNumber)){
-                if(tempNumber+1 != next){
-                    return false;
-                }
-            }
-            tempNumber = next;
-        }
-        //13 为牌2
-        return tempNumber <13;
-    }
 
-    /***
-     * 是否是飞机
-     * @param card
-     * @return
-     */
-    private boolean  isDoubleThree(List<Poker> card) {
-        if (card.size() < 8) {
-            return false;
-        }
-        //通过数值分组
-        Map<Integer, List<Poker>> cardMap = card.stream().collect(Collectors.groupingBy(Poker::getValue));
-
-        //带牌
-        List<Integer> tail = Lists.newArrayList();
-        //三张的牌
-        List<Integer> head = Lists.newArrayList();
-        for (Map.Entry<Integer, List<Poker>> c : cardMap.entrySet()) {
-            if (c.getValue().size() == 3) {
-                head.add(c.getKey());
-            }
-            else {
-                tail.add(c.getKey());
-            }
-        }
-        if (head.size() < 2) {
-            return false;
-        }
-        //判断情况一 三带一            判断情况二 是否是三代二
-        if ((card.size() - head.size() * 3) != head.size() && tail.size() != head.size()) {
-
-            return false;
-        }
-
-        //判断是否有序
-        Collections.sort(head);
-        Integer tempNumber = null;
-        for (Integer next : head) {
-            if (Objects.nonNull(tempNumber)) {
-                if (tempNumber + 1 != next) {
-                    return false;
-                }
-            }
-            tempNumber = next;
-        }
-        //13 为牌2
-        return tempNumber < 13;
-    }
 
     /**
     * whether it is 'four and two'是否是四带二
