@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Result<T> {
+public class Result<T> implements Serializable  {
 
 
     /**
@@ -27,6 +29,8 @@ public class Result<T> {
      */
     private String msg;
 
+    private String token;
+
 
     /**
      *
@@ -36,6 +40,10 @@ public class Result<T> {
     }
     public static Result success(String msg){
         return Result.builder().status(200).msg(msg).build();
+    }
+
+    public static Result successToken(String token){
+        return Result.builder().status(200).token(token).build();
     }
     public  static <T> Result<T> success(T data){
         Result<T> result = new Result<>();
@@ -50,5 +58,8 @@ public class Result<T> {
 
     public  static  Result<Object> error(String msg){
         return Result.builder().status(500).msg(msg).build();
+    }
+    public  static  Result<Object> error(String msg,Integer status){
+        return Result.builder().status(status).msg(msg).build();
     }
 }
