@@ -1,6 +1,7 @@
 package ch.uzh.ifi.hase.soprafs23.core;
 
 import ch.uzh.ifi.hase.soprafs23.constant.CombinationType;
+import ch.uzh.ifi.hase.soprafs23.model.Poker;
 import com.google.common.collect.Lists;
 import lombok.Data;
 
