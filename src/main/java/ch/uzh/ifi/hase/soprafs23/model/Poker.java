@@ -13,6 +13,10 @@ public class Poker implements Comparable<Poker>{
 
     // 1->3 2->4 3->5 4->6 5->7 6->8 7->9 8->10 9->j 10->Q 11->K 12->A 13->2 14->small joker 15->big joker
 
+    /**
+     * value of card
+     */
+    private Integer value;
 
 
     @Override
