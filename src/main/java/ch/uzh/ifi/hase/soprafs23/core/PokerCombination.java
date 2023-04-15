@@ -28,6 +28,36 @@ public class PokerCombination {
      */
     private Integer userId;
 
+
+    /**
+     * 牌组类型定义
+     */
+    public void initType(){
+        if(card.size()==1){
+            this.combinationType = CombinationType.ONE;
+        }else if(isTwo(card)){
+            this.combinationType = CombinationType.TWO;
+        }else if(isThree(card)){
+            this.combinationType = CombinationType.THREE;
+        }else if(isFour(card)){
+            this.combinationType = CombinationType.FOUR;
+        }else if(isThreeAndOne(card)){
+            this.combinationType = CombinationType.THREEANDONE;
+        }else if(isFourAndTwo(card)){
+            this.combinationType = CombinationType.FOURANDTWO;
+        }else if(isContinuation(card)){
+            this.combinationType = CombinationType.CONTINUATION;
+        }else if(isDoubleContinuation(card)){
+            this.combinationType = CombinationType.DOUBLECONTINUATION;
+        }else if(isDoubleKing(card)){
+            this.combinationType = CombinationType.DOUBLEKING;
+        }else if(isDoubleThree(card)){
+            this.combinationType = CombinationType.DOUBLETHREE;
+        }else{
+            throw new RuntimeException("Unknown Combination");
+        }
+    }
+
     /**
      * 比较牌型
      * @param o
@@ -57,8 +87,8 @@ public class PokerCombination {
             case DOUBLECONTINUATION:
                 return this.card.size()==o.getCard().size() && isDoubleContinuationMaxValue(this)<isDoubleContinuationMaxValue(o);
             //四带二
-            case FOURANDTHREE:
-                return this.card.size()==o.getCard().size() && isFourAndThreeMaxValue(this)<isFourAndThreeMaxValue(o);
+            case FOURANDTWO:
+                return this.card.size()==o.getCard().size() && isFourAndTwoMaxValue(this)<isFourAndTwoMaxValue(o);
             case ONE:
             case TWO:
             case THREE:
@@ -122,7 +152,7 @@ public class PokerCombination {
      * wather the value of 'four and two' is biggest
      * @param pokerCombination
      */
-    public Integer isFourAndThreeMaxValue(PokerCombination pokerCombination){
+    public Integer isFourAndTwoMaxValue(PokerCombination pokerCombination){
         List<Poker> num = pokerCombination.getCard();
         Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
         List<Integer> head = Lists.newArrayList();
@@ -323,7 +353,7 @@ public class PokerCombination {
     * @param card
     * @return
     */
-    private boolean  isFourAndThree(List<Poker> card){
+    private boolean  isFourAndTwo(List<Poker> card){
         if(card.size()<6){
             return false;
         }
