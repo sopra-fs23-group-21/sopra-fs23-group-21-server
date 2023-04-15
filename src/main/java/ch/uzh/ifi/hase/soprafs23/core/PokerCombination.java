@@ -75,22 +75,11 @@ public class PokerCombination {
         Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
         return Collections.max(Lists.newArrayList(collect.keySet().iterator()));
     }
-
     /**
-     * 四带二的值
+     * wather the value of 'four and two' is biggest
      * @param pokerCombination
      */
-    public Integer isFourAndThreeMaxValue(PokerCombination pokerCombination){
-        List<Poker> num = pokerCombination.getCard();
-        Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
-        List<Integer> head = Lists.newArrayList();
-        for (Map.Entry<Integer, List<Poker>> integerListEntry : collect.entrySet()) {
-            if (integerListEntry.getValue().size()==4) {
-                head.add(integerListEntry.getKey());
-            }
-        }
-        return Collections.max(head);
-    }
+
 
     /**
      * 判断类型
@@ -301,42 +290,17 @@ public class PokerCombination {
         }
         //13 为牌2
         return tempNumber <13;
+
+
+
+        /**
+         * whether it is 'four and two'是否是四带二
+         * @param card
+         * @return
+         */
+    
     }
 
-    /**
-     * 是否是四带二
-     * @param card
-     * @return
-     */
-    private boolean  isFourAndThree(List<Poker> card){
-        if(card.size()<6){
-            return false;
-        }
-        //通过数值分组
-        Map<Integer, List<Poker>> cardMap = card.stream().collect(Collectors.groupingBy(Poker::getValue));
 
-        //带牌
-        List<Integer> tail = Lists.newArrayList();
-        //四张的牌
-        List<Integer> head = Lists.newArrayList();
-        for (Map.Entry<Integer, List<Poker>> c : cardMap.entrySet()) {
-            if(c.getValue().size()==4){
-                head.add(c.getKey());
-            }else {
-                tail.add(c.getKey());
-            }
-        }
-        if(head.size()==0){
-            return false;
-        }
-
-        //判断情况一 四带二            判断情况二  四带二对
-        if(card.size() !=6 && tail.size() != 2){
-            return false;
-        }
-
-        //13 为牌2
-        return true;
-    }
 
 }
