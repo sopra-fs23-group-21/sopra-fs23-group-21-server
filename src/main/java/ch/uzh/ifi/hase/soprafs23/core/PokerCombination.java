@@ -32,39 +32,50 @@ public class PokerCombination {
     /**
      * 牌组类型定义
      */
-    public void initType(){
-        if(card.size()==1){
+    public void initType() {
+        if (card.size() == 1) {
             this.combinationType = CombinationType.ONE;
-        }else if(isTwo(card)){
+        }
+        else if (isTwo(card)) {
             this.combinationType = CombinationType.TWO;
-        }else if(isThree(card)){
+        }
+        else if (isThree(card)) {
             this.combinationType = CombinationType.THREE;
-        }else if(isFour(card)){
+        }
+        else if (isFour(card)) {
             this.combinationType = CombinationType.FOUR;
-        }else if(isThreeAndOne(card)){
+        }
+        else if (isThreeAndOne(card)) {
             this.combinationType = CombinationType.THREEANDONE;
-        }else if(isFourAndTwo(card)){
+        }
+        else if (isFourAndTwo(card)) {
             this.combinationType = CombinationType.FOURANDTWO;
-        }else if(isContinuation(card)){
+        }
+        else if (isContinuation(card)) {
             this.combinationType = CombinationType.CONTINUATION;
-        }else if(isDoubleContinuation(card)){
+        }
+        else if (isDoubleContinuation(card)) {
             this.combinationType = CombinationType.DOUBLECONTINUATION;
-        }else if(isDoubleKing(card)){
+        }
+        else if (isDoubleKing(card)) {
             this.combinationType = CombinationType.DOUBLEKING;
-        }else if(isDoubleThree(card)){
+        }
+        else if (isDoubleThree(card)) {
             this.combinationType = CombinationType.DOUBLETHREE;
-        }else{
+        }
+        else {
             throw new RuntimeException("Unknown Combination");
         }
     }
 
     /**
      * 比较牌型
+     *
      * @param o
      * @return true可出牌，false不可出牌
      */
 
-    public boolean compareTo(PokerCombination o){
+    public boolean compareTo(PokerCombination o) {
         initType();
         o.initType();
         //判断牌型是否一致，如果不一致比较牌型大小
@@ -73,26 +84,26 @@ public class PokerCombination {
         }
 
         //牌型一致，比较组合大小
-        switch (this.combinationType){
+        switch (this.combinationType) {
             //三带一
             case THREEANDONE:
-                return this.card.size()==o.getCard().size() && getIdentical(this) < getIdentical(o);
+                return this.card.size() == o.getCard().size() && getIdentical(this) < getIdentical(o);
             //顺子
             case CONTINUATION:
-                return this.card.size()==o.getCard().size() && Collections.max(this.card).getValue() < Collections.max(o.getCard()).getValue();
+                return this.card.size() == o.getCard().size() && Collections.max(this.card).getValue() < Collections.max(o.getCard()).getValue();
             //飞机
             case DOUBLETHREE:
-                return this.card.size()==o.getCard().size() && getDoubleThreeMaxValue(this)< getDoubleThreeMaxValue(o);
+                return this.card.size() == o.getCard().size() && getDoubleThreeMaxValue(this) < getDoubleThreeMaxValue(o);
             //连对
             case DOUBLECONTINUATION:
-                return this.card.size()==o.getCard().size() && isDoubleContinuationMaxValue(this)<isDoubleContinuationMaxValue(o);
+                return this.card.size() == o.getCard().size() && isDoubleContinuationMaxValue(this) < isDoubleContinuationMaxValue(o);
             //四带二
             case FOURANDTWO:
-                return this.card.size()==o.getCard().size() && isFourAndTwoMaxValue(this)<isFourAndTwoMaxValue(o);
+                return this.card.size() == o.getCard().size() && isFourAndTwoMaxValue(this) < isFourAndTwoMaxValue(o);
             case ONE:
             case TWO:
             case THREE:
-                return card.get(0).getValue()<o.getCard().get(0).getValue();
+                return card.get(0).getValue() < o.getCard().get(0).getValue();
             case FOUR:
             case DOUBLEKING:
             default:
@@ -104,17 +115,18 @@ public class PokerCombination {
 
     /**
      * 三带一找到三张的牌值
+     *
      * @param pokerCombination
      * @return
      */
-    private Integer getIdentical(PokerCombination pokerCombination){
+    private Integer getIdentical(PokerCombination pokerCombination) {
         List<Poker> num = pokerCombination.getCard();
         Map<Integer, List<Poker>> collect = num.stream()
                 .collect(Collectors.groupingBy(Poker::getValue));
 
         Collection<List<Poker>> values = collect.values();
         for (List<Poker> value : values) {
-            if(value.size()==3){
+            if (value.size() == 3) {
                 return value.get(0).getValue();
             }
         }
@@ -122,26 +134,28 @@ public class PokerCombination {
     }
 
 
-
     /**
      * 连队的最大值
+     *
      * @param pokerCombination
      */
-    public Integer isDoubleContinuationMaxValue(PokerCombination pokerCombination){
+    public Integer isDoubleContinuationMaxValue(PokerCombination pokerCombination) {
         List<Poker> num = pokerCombination.getCard();
         Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
         return Collections.max(Lists.newArrayList(collect.keySet().iterator()));
     }
+
     /**
      * wather the value of 'four and two' is biggest
+     *
      * @param pokerCombination
      */
-    public Integer isFourAndTwoMaxValue(PokerCombination pokerCombination){
+    public Integer isFourAndTwoMaxValue(PokerCombination pokerCombination) {
         List<Poker> num = pokerCombination.getCard();
         Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
         List<Integer> head = Lists.newArrayList();
         for (Map.Entry<Integer, List<Poker>> integerListEntry : collect.entrySet()) {
-            if (integerListEntry.getValue().size()==4) {
+            if (integerListEntry.getValue().size() == 4) {
                 head.add(integerListEntry.getKey());
             }
         }
@@ -152,48 +166,50 @@ public class PokerCombination {
     /**
      * 是否是 牌型对
      */
-    private boolean  isTwo( List<Poker> card){
-        if(card.size()!=2){
+    private boolean isTwo(List<Poker> card) {
+        if (card.size() != 2) {
             return false;
         }
-        return  card.get(0).getValue() == card.get(1).getValue() && card.get(0).getValue()!=14 && card.get(1).getValue()!=15;
+        return card.get(0).getValue() == card.get(1).getValue() && card.get(0).getValue() != 14 && card.get(1).getValue() != 15;
     }
 
 
     /**
      * 是否三代一
      */
-    private boolean  isThreeAndOne( List<Poker> card){
-        if(card.size()>5){
+    private boolean isThreeAndOne(List<Poker> card) {
+        if (card.size() > 5) {
             return false;
         }
         Map<Integer, List<Poker>> collect = card.stream()
                 .collect(Collectors.groupingBy(Poker::getValue));
-        if(collect.size()!=2){
+        if (collect.size() != 2) {
             return false;
         }
         for (List<Poker> value : collect.values()) {
-            if(value.size()==3){
+            if (value.size() == 3) {
                 return true;
             }
         }
-        return  false;
+        return false;
+
     }
 
 
     /**
      * 是否三不带
      */
-    private boolean  isThree( List<Poker> card){
-        if(card.size()!=3){
+    private boolean isThree(List<Poker> card) {
+        if (card.size() != 3) {
             return false;
         }
         Integer lastNum = null;
         for (Poker next : card) {
-            if(Objects.isNull(lastNum)){
+            if (Objects.isNull(lastNum)) {
                 lastNum = next.getValue();
-            }else {
-                if(lastNum != next.getValue()){
+            }
+            else {
+                if (lastNum != next.getValue()) {
                     return false;
                 }
             }
@@ -204,16 +220,17 @@ public class PokerCombination {
     /**
      * 是否炸弹 determine weather it is bomb
      */
-    private boolean  isFour( List<Poker> card){
-        if(card.size()!=4){
+    private boolean isFour(List<Poker> card) {
+        if (card.size() != 4) {
             return false;
         }
         Integer lastNum = null;
         for (Poker next : card) {
-            if(Objects.isNull(lastNum)){
+            if (Objects.isNull(lastNum)) {
                 lastNum = next.getValue();
-            }else {
-                if(lastNum != next.getValue()){
+            }
+            else {
+                if (lastNum != next.getValue()) {
                     return false;
                 }
             }
@@ -224,8 +241,8 @@ public class PokerCombination {
     /**
      * 是否是王炸
      */
-    private boolean  isDoubleKing( List<Poker> card){
-        if(card.size()!=2){
+    private boolean isDoubleKing(List<Poker> card) {
+        if (card.size() != 2) {
             return false;
         }
         List<Integer> integers = Lists.newArrayList(14, 15);
@@ -235,31 +252,32 @@ public class PokerCombination {
     /**
      * whether the combination type is 'Chain'-是否是顺子
      */
-    private boolean  isContinuation(List<Poker> card){
-        if(card.size()<5){
+    private boolean isContinuation(List<Poker> card) {
+        if (card.size() < 5) {
             return false;
         }
         Collections.sort(card);
         Integer tempNumber = null;
         for (Poker next : card) {
-            if(Objects.nonNull(tempNumber)){
-                if(tempNumber+1 != next.getValue()){
+            if (Objects.nonNull(tempNumber)) {
+                if (tempNumber + 1 != next.getValue()) {
                     return false;
                 }
             }
             tempNumber = next.getValue();
         }
         //13 为牌2
-        return tempNumber <13;
+        return tempNumber < 13;
     }
 
     /**
-    * whether it is 'four and two'是否是四带二
-    * @param card
-    * @return
-    */
-    private boolean  isFourAndTwo(List<Poker> card){
-        if(card.size()<6){
+     * whether it is 'four and two'是否是四带二
+     *
+     * @param card
+     * @return
+     */
+    private boolean isFourAndTwo(List<Poker> card) {
+        if (card.size() < 6) {
             return false;
         }
         //通过数值分组
@@ -270,18 +288,19 @@ public class PokerCombination {
         //四张的牌
         List<Integer> head = Lists.newArrayList();
         for (Map.Entry<Integer, List<Poker>> c : cardMap.entrySet()) {
-            if(c.getValue().size()==4){
+            if (c.getValue().size() == 4) {
                 head.add(c.getKey());
-            }else {
+            }
+            else {
                 tail.add(c.getKey());
             }
         }
-        if(head.size()==0){
+        if (head.size() == 0) {
             return false;
         }
 
         //判断情况一 四带二            判断情况二  四带二对
-        if(card.size() !=6 && tail.size() != 2){
+        if (card.size() != 6 && tail.size() != 2) {
             return false;
         }
 
@@ -289,8 +308,47 @@ public class PokerCombination {
         return true;
     }
 
+    /**
+     * 是否是飞机
+     * @param card
+     * @return
+     */
+    private boolean isDoubleThree(List<Poker> card) {
+        if (card.size() < 8) {
+            return false;
+        }
+        //通过数值分组
+        Map<Integer, List<Poker>> cardMap = card.stream().collect(Collectors.groupingBy(Poker::getValue));
 
 
-
-
+        //带牌
+        List<Integer> tail = Lists.newArrayList();
+        //三张的牌
+        List<Integer> head = Lists.newArrayList();
+        for (Map.Entry<Integer, List<Poker>> c : cardMap.entrySet()) {
+            if (c.getValue().size() == 3) {
+                head.add(c.getKey());
+            }
+            else {
+                tail.add(c.getKey());
+            }
+        }
+        if (head.size() < 2) {
+            return false;
+        }
+        if ((card.size() - head.size() * 3) != head.size() && tail.size() != head.size()) {
+            return false;
+        }
+        Collections.sort(head);
+        Integer tempNumber = null;
+        for (Integer next : head) {
+            if (Objects.nonNull(tempNumber)) {
+                if (tempNumber + 1 != next) {
+                    return false;
+                }
+            }
+            tempNumber = next;
+        }
+        return tempNumber < 13;
+    }
 }
