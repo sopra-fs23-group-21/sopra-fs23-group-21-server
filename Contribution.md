@@ -57,4 +57,5 @@ For each week, everyone should write down your contributions with following info
  - Landlord campaign, including notifying players to campaign for landlord and confirming landlord #26
  - Deal 17 cards to each player and change the game state to the state of campaigning landlord #27
  - determine the card combition type whether it is 'bomb' #52
- - dethermine the card combination type whether is 'four and three' and whether it is the biggest value #53
+ - determine the card combination type whether is 'four and three' and whether it is the biggest value #53
+ - determine whether the card combination is 'Chain'#55
