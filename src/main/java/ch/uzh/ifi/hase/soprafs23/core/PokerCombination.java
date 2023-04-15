@@ -1,6 +1,8 @@
 package ch.uzh.ifi.hase.soprafs23.core;
 
 import ch.uzh.ifi.hase.soprafs23.constant.CombinationType;
+import ch.uzh.ifi.hase.soprafs23.model.Poker;
+import com.fasterxml.jackson.databind.ser.std.StdArraySerializers;
 import com.google.common.collect.Lists;
 import lombok.Data;
 
@@ -26,7 +28,48 @@ public class PokerCombination {
      */
     private Integer userId;
 
+    /**
+     * 比较牌型
+     * @param o
+     * @return true可出牌，false不可出牌
+     */
 
+    public boolean compareTo(PokerCombination o){
+        initType();
+        o.initType();
+        //判断牌型是否一致，如果不一致比较牌型大小
+        if (!this.combinationType.equals(o.getCombinationType())) {
+            return this.combinationType.getLevel() < o.getCombinationType().getLevel();
+        }
+
+        //牌型一致，比较组合大小
+        switch (this.combinationType){
+            //三带一
+            case THREEANDONE:
+                return this.card.size()==o.getCard().size() && getIdentical(this) < getIdentical(o);
+            //顺子
+            case CONTINUATION:
+                return this.card.size()==o.getCard().size() && Collections.max(this.card).getValue() < Collections.max(o.getCard()).getValue();
+            //飞机
+            case DOUBLETHREE:
+                return this.card.size()==o.getCard().size() && getDoubleThreeMaxValue(this)< getDoubleThreeMaxValue(o);
+            //连对
+            case DOUBLECONTINUATION:
+                return this.card.size()==o.getCard().size() && isDoubleContinuationMaxValue(this)<isDoubleContinuationMaxValue(o);
+            //四带二
+            case FOURANDTHREE:
+                return this.card.size()==o.getCard().size() && isFourAndThreeMaxValue(this)<isFourAndThreeMaxValue(o);
+            case ONE:
+            case TWO:
+            case THREE:
+                return card.get(0).getValue()<o.getCard().get(0).getValue();
+            case FOUR:
+            case DOUBLEKING:
+            default:
+                return false;
+
+        }
+    }
 
 
     /**
