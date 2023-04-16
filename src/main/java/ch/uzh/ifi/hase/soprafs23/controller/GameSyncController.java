@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
@@ -57,6 +58,17 @@ public class GameSyncController {
         }
         userVo.setSession(session);
         gameContext.sync(userVo.getId());
+    }
+
+    /**
+     * monitor the messages
+     * @param message
+     * @param session
+     */
+    @OnMessage
+    public void onMessage(String message, Session session) {
+        //
+        System.out.println("======");
     }
 
 }
