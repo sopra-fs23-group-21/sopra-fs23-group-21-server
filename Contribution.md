@@ -11,7 +11,7 @@ For each week, everyone should write down your contributions with following info
 
 ## Xiong Li
 - Check the user's cards amount #17
-- Implement functions to check whether a certain combination is possible #35
+- Implement functions to sync the game(to all players). #35
 
 ## Zhi Wang 
 - Define the card number#20
@@ -69,3 +69,4 @@ For each week, everyone should write down your contributions with following info
 - Implement function to quit the game room. #31
 - Implement functions to continue the game after game ending #32
 - Implement functions to play cards(Fix Code). #34
+- Implement functions to sync the game(Fix code:sync the game to the players in the same game room). #35

@@ -69,42 +69,6 @@ public class GameContext {
     private Integer winner;
 
 
-    //同步
-    public void sync() {
-
-        Gson gson = new Gson();
-        Result<GameContext> success = Result.success(this);
-        WebSocketConfigOne.executor.execute(() -> {
-            //同步数据
-            this.userList.forEach(userVo -> {
-                if (Objects.isNull(userVo.getSession())) {
-                    return;
-                }
-                try {
-                    synchronized (userVo) {
-                        userVo.getSession().getBasicRemote().sendText(gson.toJson(success));
-                    }
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-        });
-    }
-
-    //同步
-    public void sync(Integer id) {
-
-        Gson gson = new Gson();
-        Result<GameContext> success = Result.success(this);
-
-        UserVo user = getUser(id);
-        WebSocketConfigOne.executor.execute(() ->
-                user.getSession().getAsyncRemote().sendText(gson.toJson(success))
-        );
-    }
-
-
 
     /**
      * 初始化牌组
@@ -120,6 +84,40 @@ public class GameContext {
                         .build());
             }
         }
+    }
+
+    //同步
+    public void sync(){
+
+        Gson gson = new Gson();
+        Result<GameContext> success = Result.success(this);
+        WebSocketConfigOne.executor.execute(()->{
+            //同步数据
+            this.userList.forEach(userVo -> {
+                if(Objects.isNull(userVo.getSession())){
+                    return;
+                }
+                try {
+                    synchronized(userVo){
+                        userVo.getSession().getBasicRemote().sendText(gson.toJson(success));
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            });
+        });
+    }
+
+    //同步
+    public void sync(Integer id){
+
+        Gson gson = new Gson();
+        Result<GameContext> success = Result.success(this);
+
+        UserVo user = getUser(id);
+        WebSocketConfigOne.executor.execute(()->
+                user.getSession().getAsyncRemote().sendText(gson.toJson(success))
+        );
     }
 
 
