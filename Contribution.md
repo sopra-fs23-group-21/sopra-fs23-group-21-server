@@ -64,3 +64,6 @@ For each week, everyone should write down your contributions with following info
  - determine the card combination type whether is 'four and three' and whether it is the biggest value #53
  - determine whether the card combination is 'Chain'#55
  - exception #57
+
+## Zhi Wang
+- Implement function to quit the game room. #31
