@@ -30,7 +30,13 @@ public class UserVo extends User {
     /**
      * session
      */
-    private Session session;
+    private transient  Session session;
+
+    public void  init(){
+        handCard = Lists.newArrayList();
+        contend = null;
+        isContinue = false;
+    }
 
 
     public UserVo(User user){

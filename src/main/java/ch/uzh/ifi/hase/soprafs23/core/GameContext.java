@@ -28,6 +28,8 @@ public class GameContext {
 
     private List<Poker> pokers;
 
+    private String code;
+
     /**
      * 是否结束
      */
@@ -42,6 +44,11 @@ public class GameContext {
      * 庄
      */
     private Integer start;
+
+    /**
+     * 1 等待  2 抢地主 3 出牌 4 结束
+     */
+    private int gameStatus = 1;
 
 
     /**
@@ -60,16 +67,6 @@ public class GameContext {
      */
     private Integer winner;
 
-    private int gameStatus = 1;
-
-    public UserVo getUser(Integer id) {
-        for (UserVo userVo : this.userList) {
-            if (userVo.getId().equals(id)) {
-                return userVo;
-            }
-        }
-        throw new RuntimeException("unknown user");
-    }
 
     //同步
     public void sync() {
@@ -124,22 +121,39 @@ public class GameContext {
         }
     }
 
-    /**
-     * get poker combination
-     * @param id
-     * @return
-     */
-    public List<PokerCombination> getPokerCombination(Integer id){
-        return null;
-    }
 
-    public void continueGame(Integer userId) {
+    /**
+     * 准备
+     * @param userId
+     */
+    public synchronized void continueGame(Integer userId){
         UserVo user = getUser(userId);
+        user.init();
         user.setContinue(true);
         List<UserVo> collect = this.userList.stream().filter(UserVo::isContinue).collect(Collectors.toList());
-        if (collect.size() == 3) {
+        if(collect.size()==3){
+            restart();
             sendCard();
         }
+        sync();
+    }
+
+    public UserVo getUser(Integer id){
+        for (UserVo userVo : this.userList) {
+            if( userVo.getId().equals(id)){
+                return userVo;
+            }
+        }
+        throw new RuntimeException("未知用户");
+    }
+
+    public UserVo exist(Integer id){
+        for (UserVo userVo : this.userList) {
+            if( userVo.getId().equals(id)){
+                return userVo;
+            }
+        }
+        return null;
     }
 
     /**
@@ -336,6 +350,16 @@ public class GameContext {
             list.setContinue(false);
         });
         this.gameStatus = 4;
+    }
+
+    /***
+     * 游戏结束
+     */
+    private void restart(){
+//        this.userList.forEach(UserVo::init);
+        this.gameStatus = 1;
+        this.last = null;
+        this.winner = null;
     }
 
 
