@@ -153,7 +153,7 @@ public class PokerCombination {
 
 
     /**
-     * 是否是 牌型对
+     * check whether it's double cards
      */
     private boolean isTwo(List<Poker> card) {
         if (card.size() != 2) {
@@ -227,16 +227,7 @@ public class PokerCombination {
         return true;
     }
 
-    /**
-     * 是否是王炸
-     */
-    private boolean isDoubleKing(List<Poker> card) {
-        if (card.size() != 2) {
-            return false;
-        }
-        List<Integer> integers = Lists.newArrayList(14, 15);
-        return integers.contains(card.get(0).getValue()) && integers.contains(card.get(1).getValue());
-    }
+
 
     /**
      * whether the combination type is 'Chain'-是否是顺子
