@@ -214,6 +214,25 @@ public class PokerCombination {
         return  false;
     }
 
+    /**
+     * 是否三不带
+     */
+    private boolean  isThree( List<Poker> card){
+        if(card.size()!=3){
+            return false;
+        }
+        Integer lastNum = null;
+        for (Poker next : card) {
+            if(Objects.isNull(lastNum)){
+                lastNum = next.getValue();
+            }else {
+                if(lastNum != next.getValue()){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     /**
      * whether the combination type is 'Chain'-是否是顺子
