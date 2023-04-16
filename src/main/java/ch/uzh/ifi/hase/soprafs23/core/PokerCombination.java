@@ -162,6 +162,16 @@ public class PokerCombination {
         return card.get(0).getValue() == card.get(1).getValue() && card.get(0).getValue() != 14 && card.get(1).getValue() != 15;
     }
 
+    /**
+     * check whether it's double joker - a greatest bomb
+     */
+    private boolean isDoubleKing(List<Poker> card) {
+        if (card.size() != 2) {
+            return false;
+        }
+        List<Integer> integers = Lists.newArrayList(14, 15);
+        return integers.contains(card.get(0).getValue()) && integers.contains(card.get(1).getValue());
+    }
 
     /**
      * 是否三代一
