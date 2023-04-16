@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -35,6 +36,18 @@ public class CardsController extends BaseController {
         roomSync.push();
         return Result.success(roomCode);
     }
+
+    //let the user join a game room
+    @PostMapping("/addUser")
+    public Result addUser(Integer roomCode){
+        GameContext gameContext = GAME_ROOM.get(roomCode);
+        if(Objects.isNull(gameContext)){
+            return Result.error("未找到此房间");
+        }
+        gameContext.prepare(getUser());
+        return Result.success();
+    }
+
     //退出房间
     @DeleteMapping("/{roomCode}")
     public Result createGame(@PathVariable Integer roomCode){
