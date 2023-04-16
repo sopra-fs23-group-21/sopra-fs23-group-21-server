@@ -53,6 +53,8 @@ For each week, everyone should write down your contributions with following info
 - Define the card combination type #58
 - Implement the function to determine the card combination of Airplane(double three) #59
 - Implement the function to define the maximum of "Airplane"(Double Three) #61
+- Implement the function to determine the card combination of Consecutive Double #62
+- Implement the function to define the maximum of "Consecutive Double" #63
 
 
 ## Weimin Yang
