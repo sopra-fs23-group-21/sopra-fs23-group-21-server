@@ -5,6 +5,7 @@ import ch.uzh.ifi.hase.soprafs23.core.GameContext;
 import ch.uzh.ifi.hase.soprafs23.core.PokerCombination;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
 import ch.uzh.ifi.hase.soprafs23.model.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,20 @@ public class CardsController extends BaseController {
     public static final AtomicInteger add= new AtomicInteger();
 
 
+    @Autowired
+    private RoomSync roomSync;
+
+
+    //create room
+    @PostMapping
+    public Result createGame(){
+        GameContext e = new GameContext();
+        int roomCode = add.getAndIncrement();
+        GAME_ROOM.put(roomCode,e);
+        e.setCode(roomCode+"");
+        roomSync.push();
+        return Result.success(roomCode);
+    }
     //退出房间
     @DeleteMapping("/{roomCode}")
     public Result createGame(@PathVariable Integer roomCode){
