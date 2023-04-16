@@ -1,6 +1,7 @@
 package ch.uzh.ifi.hase.soprafs23.core;
 
 import ch.uzh.ifi.hase.soprafs23.config.WebSocketConfigOne;
+import ch.uzh.ifi.hase.soprafs23.entity.User;
 import ch.uzh.ifi.hase.soprafs23.model.Poker;
 import ch.uzh.ifi.hase.soprafs23.model.Result;
 import ch.uzh.ifi.hase.soprafs23.model.UserVo;
@@ -155,6 +156,27 @@ public class GameContext {
             }
         }
         return null;
+    }
+
+    /**
+     * let the user to join a room
+     */
+    public synchronized void prepare(User user){
+
+        UserVo userVo = exist(user.getId());
+        if(Objects.nonNull(userVo)){
+            return;
+        }
+
+
+        if(isGameOver){
+            throw new RuntimeException("the game already starts, you can not join");
+        }
+        if(this.userList.size()>=3) {
+            throw new RuntimeException("the room is already full");
+        }
+        this.userList.add(new UserVo(user));
+        sync();
     }
 
     /**

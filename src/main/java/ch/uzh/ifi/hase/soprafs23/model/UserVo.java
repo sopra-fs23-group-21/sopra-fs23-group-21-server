@@ -1,29 +1,36 @@
 package ch.uzh.ifi.hase.soprafs23.model;
 
 import ch.uzh.ifi.hase.soprafs23.entity.User;
+import com.github.houbb.heaven.util.lang.BeanUtil;
 import com.google.common.collect.Lists;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
 
 import javax.websocket.Session;
 import java.util.List;
+import java.util.Objects;
 
 @Data
-public class UserVo extends User {
+public class UserVo extends User{
+
+    public UserVo(User user){
+        BeanUtil.copyProperties(user,this);
+        // BeanUtils.copyProperties(user,this);
+        this.handCard = Lists.newArrayList();
+    }
 
     /**
-     * 手牌
+     * cards of the plyaer
      */
     private List<Poker> handCard;
 
 
     /***
-     * 是否抢地主
+     * whether to ask for landlord's right
      */
     private Boolean contend;
 
     /**
-     * 是否继续
+     * whether to continue
      */
     private boolean isContinue;
 
@@ -38,9 +45,22 @@ public class UserVo extends User {
         isContinue = false;
     }
 
+    /**
+     * if the id is equal, then the two users are equal
+     * @param obj
+     * @return
+     */
 
-    public UserVo(User user){
-        BeanUtils.copyProperties(user,this);
-        this.handCard = Lists.newArrayList();
+    @Override
+    public boolean equals(Object obj) {
+        if(Objects.isNull(obj)){
+            return false;
+        }
+        if(obj instanceof UserVo){
+            UserVo userVo = (UserVo) obj;
+            return this.getId().equals(userVo.getId());
+        }
+        return false;
     }
+
 }
