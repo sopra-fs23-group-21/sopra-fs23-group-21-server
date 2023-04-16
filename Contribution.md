@@ -67,3 +67,4 @@ For each week, everyone should write down your contributions with following info
 
 ## Zhi Wang
 - Implement function to quit the game room. #31
+- Implement functions to continue the game after game ending #32
