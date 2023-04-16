@@ -112,27 +112,28 @@ public class PokerCombination {
         }
     }
 
-
     /**
      * 三带一找到三张的牌值
-     *
      * @param pokerCombination
      * @return
      */
-    private Integer getIdentical(PokerCombination pokerCombination) {
+    private Integer getIdentical(PokerCombination pokerCombination){
+        //获取该牌型的所有牌
         List<Poker> num = pokerCombination.getCard();
+        //按照牌的点数进行分组，生成一个 Map<Integer, List<Poker>> 对象
+        //其中键表示牌的点数，值为点数相同的牌的集合。
         Map<Integer, List<Poker>> collect = num.stream()
                 .collect(Collectors.groupingBy(Poker::getValue));
-
+        //获取这个 Map 中的所有值（即所有点数相同的牌的集合）
         Collection<List<Poker>> values = collect.values();
+        //遍历。如果集合中包含三张牌，则返回这三张牌中的任意一张的点数。
         for (List<Poker> value : values) {
-            if (value.size() == 3) {
+            if(value.size()==3){
                 return value.get(0).getValue();
             }
         }
         throw new RuntimeException("不是三带一");
     }
-
 
     /**
      * wather the value of 'four and two' is biggest
@@ -150,7 +151,6 @@ public class PokerCombination {
         }
         return Collections.max(head);
     }
-
 
     /**
      * check whether it's double cards
@@ -174,49 +174,6 @@ public class PokerCombination {
     }
 
     /**
-     * 是否三代一
-     */
-    private boolean isThreeAndOne(List<Poker> card) {
-        if (card.size() > 5) {
-            return false;
-        }
-        Map<Integer, List<Poker>> collect = card.stream()
-                .collect(Collectors.groupingBy(Poker::getValue));
-        if (collect.size() != 2) {
-            return false;
-        }
-        for (List<Poker> value : collect.values()) {
-            if (value.size() == 3) {
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-
-    /**
-     * 是否三不带
-     */
-    private boolean isThree(List<Poker> card) {
-        if (card.size() != 3) {
-            return false;
-        }
-        Integer lastNum = null;
-        for (Poker next : card) {
-            if (Objects.isNull(lastNum)) {
-                lastNum = next.getValue();
-            }
-            else {
-                if (lastNum != next.getValue()) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
      * 是否炸弹 determine weather it is bomb
      */
     private boolean isFour(List<Poker> card) {
@@ -237,6 +194,25 @@ public class PokerCombination {
         return true;
     }
 
+    /**
+     * 是否三代一
+     */
+    private boolean  isThreeAndOne( List<Poker> card){
+        if(card.size()>5){
+            return false;
+        }
+        Map<Integer, List<Poker>> collect = card.stream()
+                .collect(Collectors.groupingBy(Poker::getValue));
+        if(collect.size()!=2){
+            return false;
+        }
+        for (List<Poker> value : collect.values()) {
+            if(value.size()==3){
+                return true;
+            }
+        }
+        return  false;
+    }
 
 
     /**
