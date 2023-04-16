@@ -6,6 +6,7 @@ import ch.uzh.ifi.hase.soprafs23.core.PokerCombination;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
 import ch.uzh.ifi.hase.soprafs23.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.Objects;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+
 @RequestMapping("/cards")
 @RestController
 public class CardsController extends BaseController {
@@ -62,6 +65,12 @@ public class CardsController extends BaseController {
     //play the cards
     @PostMapping("/pay/{roomCode}")
     public Result pay(@PathVariable Integer roomCode, @RequestBody PokerCombination pokerCombination){
+        //去重
+        if(!CollectionUtils.isEmpty(pokerCombination.getCard())){
+            pokerCombination.setCard(pokerCombination.getCard().stream().distinct().collect(Collectors.toList()));
+        }else {
+            throw new RuntimeException("请选择手牌");
+        }
         GameContext gameContext = GAME_ROOM.get(roomCode);
         gameContext.pay(pokerCombination, getUser().getId());
         return Result.success();

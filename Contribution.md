@@ -12,11 +12,11 @@ For each week, everyone should write down your contributions with following info
 ## Xiong Li
 - Check the user's cards amount #17
 - Implement functions to check whether a certain combination is possible #35
-- Implement functions to record the cards last played #34
 
 ## Zhi Wang 
 - Define the card number#20
 - Implement the card type (about the game rule)#22
+- Implement functions to play cards(Controller Part). #34
 
 ## Weimin Yang
  - short description of my work:define user entity and combinatin typies 
@@ -68,3 +68,4 @@ For each week, everyone should write down your contributions with following info
 ## Zhi Wang
 - Implement function to quit the game room. #31
 - Implement functions to continue the game after game ending #32
+- Implement functions to play cards(Fix Code). #34

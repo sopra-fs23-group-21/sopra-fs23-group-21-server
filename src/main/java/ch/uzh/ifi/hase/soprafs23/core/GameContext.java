@@ -194,32 +194,32 @@ public class GameContext {
      * 出牌 to 未知牌型 出牌错误
      * @param pokerCombination
      */
-    public boolean pay(PokerCombination pokerCombination, Integer userId) {
+    public boolean pay(PokerCombination pokerCombination,Integer userId){
         pokerCombination.initType();
-        if (!this.userList.get(this.now).getId().equals(userId)) {
+        if(!this.userList.get(this.now).getId().equals(userId)){
             throw new RuntimeException("不是你的回合");
         }
         //比较牌型
-        if (Objects.nonNull(this.last) && !this.last.compareTo(pokerCombination)) {
+        if(Objects.nonNull(this.last) && !this.last.compareTo(pokerCombination)){
             throw new RuntimeException("牌型不符合");
         }
         // 扣减手牌
         this.last = pokerCombination;
         UserVo userVo = getUser(pokerCombination.getUserId());
         userVo.getHandCard().removeAll(pokerCombination.getCard());
+
+
         // 判断是否还有手牌
-        if (userVo.getHandCard().size() == 0) {
+        if(userVo.getHandCard().size()==0){
             this.winner = this.now;
             gameOver();
-        }
-        else {
+        }else {
             // 更换出牌对象
             next();
         }
         sync();
         return true;
     }
-
 
     /**
      * 跳过
