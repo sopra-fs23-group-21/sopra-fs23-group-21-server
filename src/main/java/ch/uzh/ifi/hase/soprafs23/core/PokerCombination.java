@@ -135,17 +135,6 @@ public class PokerCombination {
 
 
     /**
-     * 连队的最大值
-     *
-     * @param pokerCombination
-     */
-    public Integer isDoubleContinuationMaxValue(PokerCombination pokerCombination) {
-        List<Poker> num = pokerCombination.getCard();
-        Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
-        return Collections.max(Lists.newArrayList(collect.keySet().iterator()));
-    }
-
-    /**
      * wather the value of 'four and two' is biggest
      *
      * @param pokerCombination
@@ -399,5 +388,16 @@ public class PokerCombination {
         }
         //13为纸牌2
         return tempNumber<13;
+    }
+
+    /**
+     * 连对最大值
+     * @param pokerCombination
+     * @return
+     */
+    public Integer isDoubleContinuationMaxValue(PokerCombination pokerCombination){
+        List<Poker> num = pokerCombination.getCard();
+        Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
+        return Collections.max(Lists.newArrayList(collect.keySet().iterator()));
     }
 }
