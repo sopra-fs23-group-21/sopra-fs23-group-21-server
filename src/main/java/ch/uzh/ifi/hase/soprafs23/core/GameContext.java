@@ -125,6 +125,7 @@ public class GameContext {
     /**
      * 准备
      * @param userId
+     * @return
      */
     public synchronized void continueGame(Integer userId){
         UserVo user = getUser(userId);
