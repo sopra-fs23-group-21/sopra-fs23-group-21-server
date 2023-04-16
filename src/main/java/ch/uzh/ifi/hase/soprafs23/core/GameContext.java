@@ -142,6 +142,17 @@ public class GameContext {
         }
     }
 
+    /**
+     * 退出房间
+     * @param userId
+     * @return 房间是否为空
+     */
+    public synchronized boolean quitGame(Integer userId){
+        UserVo user = this.getUser(userId);
+        this.userList.remove(user);
+        return this.userList.size()>0;
+    }
+
     /***
      * 出牌 to 未知牌型 出牌错误
      * @param pokerCombination

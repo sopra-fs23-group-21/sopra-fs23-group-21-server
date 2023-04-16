@@ -20,6 +20,16 @@ public class CardsController extends BaseController {
     public static final AtomicInteger add= new AtomicInteger();
 
 
+    //退出房间
+    @DeleteMapping("/{roomCode}")
+    public Result createGame(@PathVariable Integer roomCode){
+        GameContext gameContext = GAME_ROOM.get(roomCode);
+        if (!gameContext.quitGame(getUser().getId())) {
+            GAME_ROOM.remove(roomCode);
+        }
+        return Result.success();
+    }
+
     //出牌
     //play the cards
     @PostMapping("/pay/{roomCode}")
