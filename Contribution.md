@@ -38,7 +38,7 @@ For each week, everyone should write down your contributions with following info
 - Assign cards to different types of players # 26
 
 ## Zhi Wang 
-- Implement functions for the current user to skip(pass) #36
+- Implement functions for the current player to pass #36
 - Implement functions to check whether a certain combination is possible（Completed the check rule of single card）#35
 
 ## Weimin Yang

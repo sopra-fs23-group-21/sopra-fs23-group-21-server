@@ -224,19 +224,21 @@ public class GameContext {
     /**
      * 跳过
      */
-    public void pass(Integer id) {
-        if (!this.userList.get(this.now).getId().equals(id)) {
+    public void pass(Integer id){
+        if(!this.userList.get(this.now).getId().equals(id)){
             throw new RuntimeException("不是你的回合");
         }
-        if (Objects.isNull(last)) {
+        if(Objects.isNull(last)){
             throw new RuntimeException("先手，不能跳过");
         }
         //下一位
+        next();
         //如果最后一手牌和下一位是同一个用户 则重置上一首牌
-        if (now == this.userList.indexOf(getUser(this.last.getUserId()))) {
+        if(now == this.userList.indexOf( getUser(this.last.getUserId()))){
             this.last = null;
         }
-
+        //同步
+        sync();
     }
 
     /**
