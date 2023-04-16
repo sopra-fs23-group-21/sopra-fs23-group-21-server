@@ -368,4 +368,36 @@ public class PokerCombination {
         }
         return Collections.max(head);
     }
+
+    /**
+     * 判断是否是连对
+     * @param card
+     * @return
+     */
+    private boolean isDoubleContinuation(List<Poker> card){
+        if(card.size()<6 || card.size()%2==1){
+            return false;
+        }
+        Map<Integer, List<Poker>> cardMap = card.stream().collect(Collectors.groupingBy(Poker::getValue));
+        //判断是否都是对子
+        for (Map.Entry<Integer, List<Poker>> c : cardMap.entrySet()){
+            if(c.getValue().size()!=2){
+                return false;
+            }
+        }
+        //判断是否是顺序 是否都为顺
+        List<Integer> key = cardMap.keySet().stream().collect(Collectors.toList());
+        Collections.sort(key);
+        Integer tempNumber = null;
+        for (Integer next : key){
+            if(Objects.nonNull(tempNumber)){
+                if(tempNumber+1 != next){
+                    return false;
+                }
+            }
+            tempNumber = next;
+        }
+        //13为纸牌2
+        return tempNumber<13;
+    }
 }
