@@ -327,7 +327,7 @@ public class GameContext {
      */
     private void next() {
         this.now = this.now+1;
-        if(this.now>){
+        if(this.now>2){
             this.now=0;
         }
     }
