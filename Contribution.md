@@ -68,6 +68,11 @@ For each week, everyone should write down your contributions with following info
 ## Zhi Wang
 - Implement function to quit the game room. #31
 - Implement functions to continue the game after game ending #32
+- Implement functions to play cards(Fix Code). #34
+- Implement functions to sync the game(Fix code:sync the game to the players in the same game room). #35
+- Judge whether the Poker Combination is a Three-And-One poker combination, and returns the value of any of the three cards in front of the Three-And-One. #74
+- Judge whether the Poker Combination is a Three-And-One poker combination, and returns the value of any of the three cards in front of the Three-And-One. #74
+- Judge whether the Poker Combination is a Three-And-None poker combination #75
 
 ## Xiong Li
 - define the card priority, resolve #19
