@@ -17,6 +17,7 @@ For each week, everyone should write down your contributions with following info
 ## Zhi Wang
 - Define the card number#20
 - Implement the card type (about the game rule)#22
+- Implement functions to play cards(Controller Part). #34
 
 ## Weimin Yang
 - short description of my work:define user entity and combinatin typies
@@ -70,7 +71,6 @@ For each week, everyone should write down your contributions with following info
 - Implement functions to continue the game after game ending #32
 - Implement functions to play cards(Fix Code). #34
 - Implement functions to sync the game(Fix code:sync the game to the players in the same game room). #35
-- Judge whether the Poker Combination is a Three-And-One poker combination, and returns the value of any of the three cards in front of the Three-And-One. #74
 - Judge whether the Poker Combination is a Three-And-One poker combination, and returns the value of any of the three cards in front of the Three-And-One. #74
 - Judge whether the Poker Combination is a Three-And-None poker combination #75
 
