@@ -11,18 +11,18 @@ For each week, everyone should write down your contributions with following info
 
 ## Xiong Li
 - Check the user's cards amount #17
-- Implement functions to sync the game(to all players). #35
+- Implement functions to check whether a certain combination is possible #35
+- Implement functions to record the cards last played #34
 
-## Zhi Wang 
+## Zhi Wang
 - Define the card number#20
 - Implement the card type (about the game rule)#22
-- Implement functions to play cards(Controller Part). #34
 
 ## Weimin Yang
- - short description of my work:define user entity and combinatin typies 
-   - define 'user' entity: id,name,username, password,token,status  #25
-   - define combination types  #18
-  
+- short description of my work:define user entity and combinatin typies
+    - define 'user' entity: id,name,username, password,token,status  #25
+    - define combination types  #18
+
 
 # Week2(April 3 - April 9)
 
@@ -37,13 +37,13 @@ For each week, everyone should write down your contributions with following info
 - Define the card priority(game rule) #19
 - Assign cards to different types of players # 26
 
-## Zhi Wang 
+## Zhi Wang
 - Implement functions for the current player to pass #36
 - Implement functions to check whether a certain combination is possible（Completed the check rule of single card）#35
 
 ## Weimin Yang
- - define circularlinkedlist to make sure this is a turn-based game #48
- - user can update their profit #49
+- define circularlinkedlist to make sure this is a turn-based game #48
+- user can update their profit #49
 
 # Week3(April 10 - April 16)
 ## Jing Cao
@@ -58,17 +58,33 @@ For each week, everyone should write down your contributions with following info
 
 
 ## Weimin Yang
- - Landlord campaign, including notifying players to campaign for landlord and confirming landlord #26
- - Deal 17 cards to each player and change the game state to the state of campaigning landlord #27
- - determine the card combition type whether it is 'bomb' #52
- - determine the card combination type whether is 'four and three' and whether it is the biggest value #53
- - determine whether the card combination is 'Chain'#55
- - exception #57
+- Landlord campaign, including notifying players to campaign for landlord and confirming landlord #26
+- Deal 17 cards to each player and change the game state to the state of campaigning landlord #27
+- determine the card combition type whether it is 'bomb' #52
+- determine the card combination type whether is 'four and three' and whether it is the biggest value #53
+- determine whether the card combination is 'Chain'#55
+- exception #57
 
 ## Zhi Wang
 - Implement function to quit the game room. #31
 - Implement functions to continue the game after game ending #32
-- Implement functions to play cards(Fix Code). #34
-- Implement functions to sync the game(Fix code:sync the game to the players in the same game room). #35
-- Judge whether the Poker Combination is a Three-And-One poker combination, and returns the value of any of the three cards in front of the Three-And-One. #74
-- Judge whether the Poker Combination is a Three-And-None poker combination #75
+
+## Xiong Li
+- define the card priority, resolve #19
+- define the card number, resolve #20
+- implement card suit, resolve #22
+- Create websocket and game initiation, resolve #51
+- get poker combination type, resolve #60
+- Get the current player's information, resolve #65
+- Create the game room, resolve #66
+- Implment functions to add user for a game room, resolve #67
+- Get the current player's information, resolve #65
+- Create the game room, resolve #66
+- Implement functions to add user for a game room, resolve #67
+- Implement functions to add user for a game room, fix #67
+- Create a WebSocket controller class for synchronization, resolve #68
+- Implement functions to check whether the current user is already in the room, resolve #69
+- Implement functions to monitor messages, resolve #70
+- Create a WebSocket controller class for room information synchronization, resolve #71
+- Implement functions to check whether the card combination is "Double Cards", resolve #72
+- Implement functions to check whether the card combination is "Double Jokers", resolve #73
