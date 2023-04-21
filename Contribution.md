@@ -94,7 +94,7 @@ For each week, everyone should write down your contributions with following info
 - Implement functions to check whether the card combination is "Double Cards", resolve #72
 - Implement functions to check whether the card combination is "Double Jokers", resolve #73
 
-# Week4(# April 17 - April 24)
+# Week4(April 17 - April 24)
 ## Jing Cao
 - Add images for cards, background and figures #21
 - Create dashboard components #24
