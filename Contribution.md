@@ -93,3 +93,13 @@ For each week, everyone should write down your contributions with following info
 - Create a WebSocket controller class for room information synchronization, resolve #71
 - Implement functions to check whether the card combination is "Double Cards", resolve #72
 - Implement functions to check whether the card combination is "Double Jokers", resolve #73
+
+# Week4(April 17 - April 24)
+## Jing Cao
+- Add images for cards, background and figures #21
+- Create dashboard components #24
+- Create componnets to play background music #33
+- Create login page components #29
+- Create register page components #25
+- Define the types of values and properties #23
+- Implement function to get card and sort the card #35
