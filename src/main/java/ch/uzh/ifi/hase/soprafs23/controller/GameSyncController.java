@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
@@ -38,7 +39,10 @@ public class GameSyncController {
     private Gson gson = new Gson();
 
     public GameSyncController() {
-        userService = SpringUtil.getBean(UserService.class);
+        try{
+            userService = SpringUtil.getBean(UserService.class);
+        }catch (Exception e){
+        }
     }
 
     /**
@@ -60,15 +64,16 @@ public class GameSyncController {
         gameContext.sync(userVo.getId());
     }
 
+
+
+
     /**
-     * monitor the messages
-     * @param message
+     * 断开连接时调用
      * @param session
      */
-    @OnMessage
-    public void onMessage(String message, Session session) {
-        //
-        System.out.println("======");
+    @OnClose
+    public void onClose(Session session){
+        userVo.setSession(null);
     }
 
 }
