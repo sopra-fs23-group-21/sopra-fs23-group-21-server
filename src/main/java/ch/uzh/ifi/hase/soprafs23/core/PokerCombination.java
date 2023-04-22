@@ -98,8 +98,8 @@ public class PokerCombination {
             case DOUBLECONTINUATION:
                 return this.card.size() == o.getCard().size() && isDoubleContinuationMaxValue(this) < isDoubleContinuationMaxValue(o);
             //四带二
-            case FOURANDTWO:
-                return this.card.size() == o.getCard().size() && isFourAndTwoMaxValue(this) < isFourAndTwoMaxValue(o);
+            case FOURANDTHREE:
+                return this.card.size() == o.getCard().size() && isFourAndThreeMaxValue(this) < isFourAndThreeMaxValue(o);
             case ONE:
             case TWO:
             case THREE:
@@ -136,11 +136,11 @@ public class PokerCombination {
     }
 
     /**
-     * wather the value of 'four and two' is biggest
+     * wather the value of 'four and thre' is biggest
      *
      * @param pokerCombination
      */
-    public Integer isFourAndTwoMaxValue(PokerCombination pokerCombination) {
+    public Integer isFourAndThreeMaxValue(PokerCombination pokerCombination) {
         List<Poker> num = pokerCombination.getCard();
         Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
         List<Integer> head = Lists.newArrayList();
@@ -256,12 +256,12 @@ public class PokerCombination {
     }
 
     /**
-     * whether it is 'four and two'是否是四带二
+     * whether it is 'four and THREE'是否是四带SAN
      *
      * @param card
      * @return
      */
-    private boolean isFourAndTwo(List<Poker> card) {
+    private boolean isFourAndThree(List<Poker> card) {
         if (card.size() < 6) {
             return false;
         }
