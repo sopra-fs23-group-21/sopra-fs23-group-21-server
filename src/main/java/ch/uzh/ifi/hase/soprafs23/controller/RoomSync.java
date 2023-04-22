@@ -8,9 +8,9 @@ import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import lombok.Data;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.websocket.OnClose;
-import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
@@ -27,7 +27,7 @@ import java.util.*;
 public class RoomSync {
 
 
-    private static final Map<String,Session> sessionMap = Maps.newConcurrentMap();
+    private static final Map<String, Session> sessionMap = Maps.newConcurrentMap();
 
     private String token;
 
@@ -39,39 +39,32 @@ public class RoomSync {
         Result<Collection<GameContext>> success = Result.success(CardsController.GAME_ROOM.values());
 
         try {
-            session.getBasicRemote().sendText(gson.toJson(success));
+            if (Objects.nonNull(session)) {
+                session.getBasicRemote().sendText(gson.toJson(success));
+            }
         }
         catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        sessionMap.put(token,session);
+        sessionMap.put(token, session);
 
     }
 
-    /**
-     * monitor the messages
-     * @param message
-     * @param session
-     */
-    @OnMessage
-    public void onMessage(String message, Session session) {
-    }
 
     /**
      * synchronize the room code
      */
-    public void push()  {
+    public void push() {
         Gson gson = new Gson();
         Result<Collection<GameContext>> success = Result.success(CardsController.GAME_ROOM.values());
-        WebSocketConfigOne.executor.execute(()-> {
+        WebSocketConfigOne.executor.execute(() -> {
             for (Session value : sessionMap.values()) {
                 if (Objects.nonNull(value)) {
                     try {
                         value.getBasicRemote().sendText(gson.toJson(success));
                     }
                     catch (IOException e) {
-                        throw new RuntimeException(e);
                     }
                 }
             }
@@ -85,7 +78,9 @@ public class RoomSync {
      */
     @OnClose
     public void onClose(Session session) {
-        sessionMap.put(token,null);
-
+        if (!StringUtils.isEmpty(token)) {
+            sessionMap.put(token, null);
+        }
+        //offline
     }
 }
