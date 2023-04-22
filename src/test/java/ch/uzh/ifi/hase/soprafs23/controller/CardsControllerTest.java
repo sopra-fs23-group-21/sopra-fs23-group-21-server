@@ -1,35 +1,35 @@
 package ch.uzh.ifi.hase.soprafs23.controller;
 
+import ch.uzh.ifi.hase.soprafs23.config.WebSocketConfigOne;
+import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
+import ch.uzh.ifi.hase.soprafs23.core.GameContext;
+import ch.uzh.ifi.hase.soprafs23.core.PokerCombination;
+import ch.uzh.ifi.hase.soprafs23.entity.User;
+//import ch.uzh.ifi.hase.soprafs23.interceptor.SessionInterceptor;
+import ch.uzh.ifi.hase.soprafs23.model.Poker;
+import com.google.common.collect.Lists;
+import com.google.gson.Gson;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @WebMvcTest(CardsController.class)
 class CardsControllerTest {
@@ -40,6 +40,10 @@ class CardsControllerTest {
     @MockBean
     private RoomSync mockRoomSync;
 
+    private Gson gson = new Gson();
+
+
+    User user;
 
 
 
@@ -55,10 +59,6 @@ class CardsControllerTest {
 
 
 
-
-
-
-    
     @Test
     void testCreateGame1() throws Exception {
         // Setup
@@ -70,5 +70,17 @@ class CardsControllerTest {
         // Verify the results
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         verify(mockRoomSync).push();
+    }
+
+    @Test
+    void testAddUser() throws Exception {
+        // Setup
+        // Run the test
+        mockMvc.perform(post("/cards/addUser")
+                        .param("roomCode", "0")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
     }
 }
