@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import lombok.Data;
 import org.springframework.util.CollectionUtils;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
  */
 
 @Data
-public class GameContext {
+public class GameContext implements Serializable {
 
     /**
      * 牌局用户 用户id，用户对象
@@ -115,9 +116,10 @@ public class GameContext {
         Result<GameContext> success = Result.success(this);
 
         UserVo user = getUser(id);
-        WebSocketConfigOne.executor.execute(()->
-                user.getSession().getAsyncRemote().sendText(gson.toJson(success))
-        );
+        WebSocketConfigOne.executor.execute(()-> {
+            if (Objects.nonNull(user.getSession()))
+                user.getSession().getAsyncRemote().sendText(gson.toJson(success));
+        });
     }
 
 
