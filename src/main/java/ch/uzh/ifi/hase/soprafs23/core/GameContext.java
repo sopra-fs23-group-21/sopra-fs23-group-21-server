@@ -73,8 +73,9 @@ public class GameContext implements Serializable {
 
     /**
      * 初始化牌组
+     * initialize the card deck
      */
-    public void initPokers() {
+    public void initPokers(){
         pokers = Lists.newArrayList(Poker.builder().value(14).build(),
                 Poker.builder().value(15).build());
         for (int i = 1; i < 14; i++) {
@@ -124,16 +125,20 @@ public class GameContext implements Serializable {
 
 
     /**
-     * 准备
-     * @param userId
-     * @return
+     * This method is used to prepare a player for the game.
+     * 准备，确定当前用户，判断用户是否存在
+     * @param userId the ID of the player who wants to prepare
      */
     public synchronized void continueGame(Integer userId){
+        // Initialize the user's information and mark them as ready
         UserVo user = getUser(userId);
         user.init();
         user.setContinue(true);
+
+        // Check if all players are ready
         List<UserVo> collect = this.userList.stream().filter(UserVo::isContinue).collect(Collectors.toList());
         if(collect.size()==3){
+            // If all players are ready, restart the game and deal the cards
             restart();
             sendCard();
         }
@@ -146,9 +151,8 @@ public class GameContext implements Serializable {
                 return userVo;
             }
         }
-        throw new RuntimeException("未知用户");
+        throw new RuntimeException("Unknown User.");
     }
-
     public UserVo exist(Integer id){
         for (UserVo userVo : this.userList) {
             if( userVo.getId().equals(id)){
@@ -167,8 +171,6 @@ public class GameContext implements Serializable {
         if(Objects.nonNull(userVo)){
             return;
         }
-
-
         if(isGameOver){
             throw new RuntimeException("the game already starts, you can not join");
         }
@@ -180,9 +182,9 @@ public class GameContext implements Serializable {
     }
 
     /**
-     * 退出房间
+     * Quit the Game Room
      * @param userId
-     * @return 房间是否为空
+     * @return "Is the room empty?"
      */
     public synchronized boolean quitGame(Integer userId){
         UserVo user = this.getUser(userId);
@@ -190,25 +192,36 @@ public class GameContext implements Serializable {
         return this.userList.size()>0;
     }
 
-    /***
-     * 出牌 to 未知牌型 出牌错误
-     * @param pokerCombination
+    /**
+     * Get Poker Combination
+     * @param id
+     * @return Null
+     */
+    public List<PokerCombination> getPokerCombination(Integer id){
+        return null;
+    }
+
+    /**
+     * This method is used to play a poker combination for a player in the game.
+     * 出牌出到错误牌型，显示出牌错误
+     * @param pokerCombination the poker combination to be played
+     * @param userId the ID of the player who wants to play the combination
+     * @return true if the play is successful, false otherwise
+     * @throws RuntimeException if it's not the player's turn or the poker combination is invalid
      */
     public boolean pay(PokerCombination pokerCombination,Integer userId){
         pokerCombination.initType();
         if(!this.userList.get(this.now).getId().equals(userId)){
-            throw new RuntimeException("不是你的回合");
+            throw new RuntimeException("It's not your turn.");
         }
         //比较牌型
         if(Objects.nonNull(this.last) && !this.last.compareTo(pokerCombination)){
-            throw new RuntimeException("牌型不符合");
+            throw new RuntimeException("Invalid card combination.");
         }
         // 扣减手牌
         this.last = pokerCombination;
         UserVo userVo = getUser(pokerCombination.getUserId());
         userVo.getHandCard().removeAll(pokerCombination.getCard());
-
-
         // 判断是否还有手牌
         if(userVo.getHandCard().size()==0){
             this.winner = this.now;
@@ -222,22 +235,26 @@ public class GameContext implements Serializable {
     }
 
     /**
+     * This method allows a player to pass their turn without playing a card.
      * 跳过
+     * @param id the ID of the player who wants to pass their turn
+     * @throws RuntimeException if it's not the player's turn or if it's the first turn of the game
      */
     public void pass(Integer id){
         if(!this.userList.get(this.now).getId().equals(id)){
-            throw new RuntimeException("不是你的回合");
+            throw new RuntimeException("Not your turn.");
         }
         if(Objects.isNull(last)){
-            throw new RuntimeException("先手，不能跳过");
+            throw new RuntimeException("First turn, Cannot pass.");
         }
-        //下一位
+        // Move on to the next player's turn
         next();
         //如果最后一手牌和下一位是同一个用户 则重置上一首牌
+        // If the last played combination belongs to the next player, reset it to null
         if(now == this.userList.indexOf( getUser(this.last.getUserId()))){
             this.last = null;
         }
-        //同步
+        //同步 Update the game state
         sync();
     }
 
