@@ -18,8 +18,8 @@ public enum CombinationType {
     DOUBLECONTINUATION(1),
     //飞机 - double three
     DOUBLETHREE(1),
-    //四带二 - four and two
-    FOURANDTWO(1),
+    //四带三 - four and three
+    FOURANDTHREE(1),
     //炸弹 Bomb
     FOUR(2),
     //对王 - double jokers

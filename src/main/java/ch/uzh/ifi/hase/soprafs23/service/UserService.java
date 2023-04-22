@@ -128,6 +128,6 @@ public class UserService {
             User save = userRepository.save(byId);
             return save;
         }
-        throw new RuntimeException("两次密码不一致！");
+        throw new RuntimeException("两次密码不一致！Make sure the passwords are consistent! ");
     }
 }

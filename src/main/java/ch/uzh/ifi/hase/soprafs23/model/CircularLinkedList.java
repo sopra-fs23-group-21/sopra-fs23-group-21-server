@@ -98,7 +98,7 @@ public class CircularLinkedList<T> {
 
         CircularLinkedList<Integer>.Node start  = circularLinkedList.start(2);
         for (int i = 0; i < 15; i++) {
-            System.out.println("行" + start.getValue());
+            System.out.println("行 Ok" + start.getValue());
             start = start.next;
         }
     }
