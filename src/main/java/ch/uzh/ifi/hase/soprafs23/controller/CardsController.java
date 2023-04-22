@@ -3,16 +3,14 @@ package ch.uzh.ifi.hase.soprafs23.controller;
 import ch.uzh.ifi.hase.soprafs23.controller.base.BaseController;
 import ch.uzh.ifi.hase.soprafs23.core.GameContext;
 import ch.uzh.ifi.hase.soprafs23.core.PokerCombination;
-import ch.uzh.ifi.hase.soprafs23.entity.User;
 import ch.uzh.ifi.hase.soprafs23.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Vector;
+import java.util.*;
+//import java.util.Map;
+//import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -52,11 +50,13 @@ public class CardsController extends BaseController {
     }
 
     //退出房间
+    //quit room
     @DeleteMapping("/{roomCode}")
     public Result createGame(@PathVariable Integer roomCode){
         GameContext gameContext = GAME_ROOM.get(roomCode);
         if (!gameContext.quitGame(getUser().getId())) {
             GAME_ROOM.remove(roomCode);
+            roomSync.push();
         }
         return Result.success();
     }
@@ -69,7 +69,7 @@ public class CardsController extends BaseController {
         if(!CollectionUtils.isEmpty(pokerCombination.getCard())){
             pokerCombination.setCard(pokerCombination.getCard().stream().distinct().collect(Collectors.toList()));
         }else {
-            throw new RuntimeException("请选择手牌");
+            throw new RuntimeException("Please select the cards to play.");
         }
         GameContext gameContext = GAME_ROOM.get(roomCode);
         gameContext.pay(pokerCombination, getUser().getId());
@@ -87,7 +87,7 @@ public class CardsController extends BaseController {
 
     //准备,这里是跳过以后继续游戏
     // continue the game
-    @PostMapping("/{roomCode}")
+    @PutMapping("/{roomCode}")
     public Result continueGame(@PathVariable Integer roomCode){
         GameContext gameContext = GAME_ROOM.get(roomCode);
         gameContext.continueGame(getUser().getId());
