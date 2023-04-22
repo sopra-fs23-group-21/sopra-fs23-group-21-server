@@ -7,12 +7,11 @@ import ch.uzh.ifi.hase.soprafs23.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-import java.util.List;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -26,16 +25,8 @@ public class UserService {
 
   private final Logger log = LoggerFactory.getLogger(UserService.class);
 
-  private final UserRepository userRepository;
-
   @Autowired
-  public UserService(@Qualifier("userRepository") UserRepository userRepository) {
-    this.userRepository = userRepository;
-  }
-
-  public List<User> getUsers() {
-    return this.userRepository.findAll();
-  }
+  private UserRepository userRepository;
 
   public User createUser(User newUser) {
     newUser.setToken(UUID.randomUUID().toString());
@@ -72,7 +63,7 @@ public class UserService {
      * @param old
      */
     public void offline(User old){
-        User byId = userRepository.findById(Long.valueOf(old.getId())).get();
+        User byId = userRepository.findById(old.getId()).get();
         byId.setStatus(UserStatus.OFFLINE);
         userRepository.save(byId);
     }
@@ -84,7 +75,7 @@ public class UserService {
      * @return
      */
     public User updatePassword(UserReqVo userReqVo, User old){
-        User byId = userRepository.findById(Long.valueOf(old.getId())).get();
+        User byId = userRepository.findById(old.getId()).get();
         if(userReqVo.getPassword().equals(userReqVo.getRepeatPassword())){
             byId.setPassword(userReqVo.getRepeatPassword());
             User save = userRepository.save(byId);

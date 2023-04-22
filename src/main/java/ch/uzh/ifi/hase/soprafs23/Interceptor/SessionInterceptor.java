@@ -18,7 +18,7 @@ public class SessionInterceptor implements HandlerInterceptor {
     public static final ThreadLocal<User> SESSION_USER = new ThreadLocal<>();
     public static final  String TOKEN_KEY = "Authorization";
 
-    @Autowired
+    @Autowired(required = false)
     private UserService userService;
 
     @Override
@@ -29,7 +29,7 @@ public class SessionInterceptor implements HandlerInterceptor {
             token = request.getHeader(TOKEN_KEY);
         }
         if(StringUtils.isEmpty(token)){
-            return false;
+            return true;
         }
 
         User userByToken = userService.getUserByToken(token);
