@@ -49,7 +49,7 @@ public class PokerCombination {
             this.combinationType = CombinationType.THREEANDONE;
         }
         else if (isFourAndThree(card)) {
-            this.combinationType = CombinationType.FOURANDTHREE;
+            this.combinationType = CombinationType.FOURANDTWO;
         }
         else if (isContinuation(card)) {
             this.combinationType = CombinationType.CONTINUATION;
@@ -98,8 +98,8 @@ public class PokerCombination {
             case DOUBLECONTINUATION:
                 return this.card.size() == o.getCard().size() && isDoubleContinuationMaxValue(this) < isDoubleContinuationMaxValue(o);
             //四带二
-            case FOURANDTHREE:
-                return this.card.size() == o.getCard().size() && isFourAndThreeMaxValue(this) < isFourAndThreeMaxValue(o);
+            case FOURANDTWO:
+                return this.card.size() == o.getCard().size() && isFourAndTwoMaxValue(this) < isFourAndTwoMaxValue(o);
             case ONE:
             case TWO:
             case THREE:
@@ -140,7 +140,7 @@ public class PokerCombination {
      *
      * @param pokerCombination
      */
-    public Integer isFourAndThreeMaxValue(PokerCombination pokerCombination) {
+    public Integer isFourAndTwoMaxValue(PokerCombination pokerCombination) {
         List<Poker> num = pokerCombination.getCard();
         Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
         List<Integer> head = Lists.newArrayList();
