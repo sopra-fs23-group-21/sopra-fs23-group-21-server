@@ -189,6 +189,7 @@ public class GameContext implements Serializable {
     public synchronized boolean quitGame(Integer userId){
         UserVo user = this.getUser(userId);
         this.userList.remove(user);
+        sync();
         return this.userList.size()>0;
     }
 
