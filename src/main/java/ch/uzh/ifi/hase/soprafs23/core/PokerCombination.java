@@ -48,8 +48,8 @@ public class PokerCombination {
         else if (isThreeAndOne(card)) {
             this.combinationType = CombinationType.THREEANDONE;
         }
-        else if (isFourAndTwo(card)) {
-            this.combinationType = CombinationType.FOURANDTWO;
+        else if (isFourAndThree(card)) {
+            this.combinationType = CombinationType.FOURANDTHREE;
         }
         else if (isContinuation(card)) {
             this.combinationType = CombinationType.CONTINUATION;
