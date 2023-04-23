@@ -11,13 +11,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-
-
 
 
 
@@ -57,6 +57,24 @@ public class UserControllerTest {
 
     }
 
+    @Test
+    public void loginTest() throws Exception {
+
+        given(userService.login("firstname@lastname","firstname@123")).willReturn(user);
+
+        mockMvc
+                // 请求方式 + 请求路径(不用谢虚拟路径)
+                .perform(MockMvcRequestBuilders.post("/user/login")
+                        .accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
+                        // 参数类型为JSON
+                        .contentType(MediaType.ALL)
+                        // 参数数据(JSON)
+                        .param("username","firstname@lastname").param("password","firstname@123")
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+    }
 
 
 
