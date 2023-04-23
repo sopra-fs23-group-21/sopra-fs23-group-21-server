@@ -91,7 +91,7 @@ public class UserControllerTest {
 
 
 
-    
+
 
     @Test
     void testGetUserDetail() throws Exception {
@@ -105,4 +105,49 @@ public class UserControllerTest {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Test
+    void testOffline() throws Exception {
+        // Setup
+        // Run the test
+        mockMvc.perform(put("/user/offline")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+    }
 }
