@@ -109,7 +109,6 @@ class CardsControllerTest {
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     }
 
-
     @Test
     void testPay1() throws Exception {
         // Setup
@@ -128,25 +127,6 @@ class CardsControllerTest {
                 .andDo(MockMvcResultHandlers.print()).andReturn();
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Test
     void testPay2() throws Exception {
@@ -172,40 +152,4 @@ class CardsControllerTest {
         // Verify the results
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
