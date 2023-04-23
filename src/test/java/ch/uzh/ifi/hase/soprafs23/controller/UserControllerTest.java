@@ -2,6 +2,7 @@ package ch.uzh.ifi.hase.soprafs23.controller;
 
 import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
+import ch.uzh.ifi.hase.soprafs23.model.UserReqVo;
 import ch.uzh.ifi.hase.soprafs23.service.UserService;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,11 +18,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-
-
-
 
 
 
@@ -76,6 +75,7 @@ public class UserControllerTest {
 //                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
                 .andDo(MockMvcResultHandlers.print()).andReturn();
     }
+
     @Test
     public void register() throws Exception {
 
@@ -93,23 +93,6 @@ public class UserControllerTest {
 //                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
                 .andDo(MockMvcResultHandlers.print()).andReturn();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Test
     void testGetUserDetail() throws Exception {
         // Setup
@@ -138,24 +121,24 @@ public class UserControllerTest {
 
 
 
+    @Test
+    void testUpdateDetail() throws Exception {
+        // Setup
+        // Configure UserService.updateDetail(...).
+        final User user = new User(0, "name", "password", "username", "token", UserStatus.ONLINE);
+        when(userService.updateDetail(new UserReqVo(),
+                new User(0, "name", "password", "username", "token", UserStatus.ONLINE))).thenReturn(user);
 
+        // Run the test
+        mockMvc.perform(put("/user/updateDetail")
+                        .content("content").contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(user)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
     @Test
     void testOffline() throws Exception {
