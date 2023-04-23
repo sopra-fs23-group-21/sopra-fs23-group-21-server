@@ -94,4 +94,62 @@ class CardsControllerTest {
 //                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
                 .andDo(MockMvcResultHandlers.print()).andReturn();
     }
+
+    @Test
+    void testContend() throws Exception {
+        // Setup
+        // Run the test
+        final MockHttpServletResponse response = mockMvc.perform(post("/cards/contend")
+                        .param("roomCode", "0")
+                        .param("isContend", "false")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        // Verify the results
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Test
+    void testContinueGame() throws Exception {
+        // Setup
+        // Run the test
+        final MockHttpServletResponse response = mockMvc.perform(put("/cards/{roomCode}", 0)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        // Verify the results
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+    }
 }
