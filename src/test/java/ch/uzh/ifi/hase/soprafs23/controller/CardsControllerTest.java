@@ -83,4 +83,15 @@ class CardsControllerTest {
 //                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
                 .andDo(MockMvcResultHandlers.print()).andReturn();
     }
+
+    @Test
+    void testCreateGame2() throws Exception {
+        // Setup
+        // Run the test
+        mockMvc.perform(delete("/cards/{roomCode}", 0)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+    }
 }
