@@ -95,8 +95,20 @@ class CardsControllerTest {
                 .andDo(MockMvcResultHandlers.print()).andReturn();
     }
 
+    @Test
+    void testContend() throws Exception {
+        // Setup
+        // Run the test
+        final MockHttpServletResponse response = mockMvc.perform(post("/cards/contend")
+                        .param("roomCode", "0")
+                        .param("isContend", "false")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
 
-    
+        // Verify the results
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+    }
+
 
     @Test
     void testPay1() throws Exception {
