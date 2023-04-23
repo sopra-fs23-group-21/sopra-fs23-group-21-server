@@ -109,6 +109,25 @@ class CardsControllerTest {
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     }
 
+    @Test
+    void testPay1() throws Exception {
+        // Setup
+        PokerCombination pokerCombination  = new PokerCombination();
+        pokerCombination.setCard(Lists.newArrayList(Poker.builder().type(1).value(2).build()));
+        pokerCombination.setUserId(1);
+
+        // Run the test
+        mockMvc.perform(post("/cards/pay/{roomCode}", 0)
+                        // 参数类型为JSON
+                        .contentType(MediaType.ALL)
+                        .content("content").contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(pokerCombination))
+                        .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+
+    }
+
 
 
 
