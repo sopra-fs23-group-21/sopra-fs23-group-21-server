@@ -53,4 +53,12 @@ class GameSyncControllerTest {
         gameSyncController.onOpen(null,"1",0);
         // Verify the results
     }
+
+    @Test
+    void testOnClose() {
+        // Setup
+        // Run the test
+
+        // Verify the results
+    }
 }
