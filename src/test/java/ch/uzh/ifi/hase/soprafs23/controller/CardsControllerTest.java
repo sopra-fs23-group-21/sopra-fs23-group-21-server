@@ -147,18 +147,18 @@ class CardsControllerTest {
 
 
 
+    @Test
+    void testPay2() throws Exception {
+        // Setup
+        // Run the test
+        mockMvc.perform(post("/cards/pass/{roomCode}", 0)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
 
-
-
-
-
-
-
-
-
-
-
-
+        // Verify the results
+    }
 
     @Test
     void testContinueGame() throws Exception {
@@ -171,4 +171,40 @@ class CardsControllerTest {
         // Verify the results
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
