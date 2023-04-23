@@ -44,21 +44,21 @@ class CardsControllerTest {
 
 
     User user;
+    @BeforeEach
+    public void initUser(){
+        user = new User();
+        user.setName("Firstname Lastname");
+        user.setUsername("firstname@lastname");
+        user.setPassword("firstname@123");
+        user.setToken("1");
+        user.setId(1);
+        user.setStatus(UserStatus.OFFLINE);
+        WebSocketConfigOne.executor = new ThreadPoolExecutor(4,40,60l, TimeUnit.SECONDS,new LinkedBlockingQueue<>(8));
+        GameContext gameContext = new GameContext();
+        gameContext.prepare(user);
+        CardsController.GAME_ROOM.put(0,gameContext);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
     @Test
     void testCreateGame1() throws Exception {
         // Setup
