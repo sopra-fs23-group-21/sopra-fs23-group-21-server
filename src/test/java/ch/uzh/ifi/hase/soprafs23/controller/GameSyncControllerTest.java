@@ -6,6 +6,7 @@ import ch.uzh.ifi.hase.soprafs23.core.GameContext;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
 import ch.uzh.ifi.hase.soprafs23.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.stereotype.Component;
@@ -17,8 +18,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-
+import static org.mockito.BDDMockito.given;
 
 @WebMvcTest(GameSyncController.class)
 class GameSyncControllerTest {
@@ -43,5 +43,14 @@ class GameSyncControllerTest {
         CardsController.GAME_ROOM.put(0, gameContext);
         gameSyncController.setUserService(userService);
 
+    }
+
+    @Test
+    void testOnOpen() {
+        // Setup
+        given(userService.getUserByToken("1")).willReturn(user);
+
+        gameSyncController.onOpen(null,"1",0);
+        // Verify the results
     }
 }
