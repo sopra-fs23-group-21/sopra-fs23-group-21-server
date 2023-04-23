@@ -33,18 +33,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  */
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
     private UserService userService;
 
+
     private String token;
 
     private Gson gson = new Gson();
-
         User user;
-
 
     @BeforeEach
     public void initUser(){
@@ -76,6 +76,33 @@ public class UserControllerTest {
                 .andDo(MockMvcResultHandlers.print()).andReturn();
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    @Test
+    void testGetUserDetail() throws Exception {
+        // Setup
+        // Run the test
+        mockMvc.perform(get("/user/userDetail")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+    }
 
 
 }
