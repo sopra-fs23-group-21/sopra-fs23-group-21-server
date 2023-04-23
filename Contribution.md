@@ -103,3 +103,8 @@ For each week, everyone should write down your contributions with following info
 - Create register page components #25
 - Define the types of values and properties #23
 - Implement function to get card and sort the card #35
+- Add testing to create game#108
+- Add testing for update detail#122
+- Add testing for register#121
+- Add testing initiation#115
+- Add testing to pass#110
