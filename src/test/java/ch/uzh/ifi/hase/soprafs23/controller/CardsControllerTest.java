@@ -67,7 +67,7 @@ class CardsControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
-        // Verify the results
+        // Verify the resultS
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         verify(mockRoomSync).push();
     }
