@@ -8,9 +8,7 @@ import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import lombok.Data;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
-import javax.websocket.OnClose;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
@@ -42,12 +40,12 @@ public class RoomSync {
             if (Objects.nonNull(session)) {
                 session.getBasicRemote().sendText(gson.toJson(success));
             }
+        } catch (IOException e) {
         }
-        catch (IOException e) {
-            throw new RuntimeException(e);
+        if(Objects.nonNull(session)) {
+            sessionMap.put(token,session);
         }
 
-        sessionMap.put(token, session);
 
     }
 
@@ -71,16 +69,5 @@ public class RoomSync {
         });
     }
 
-    /**
-     * actions when closed
-     *
-     * @param session
-     */
-    @OnClose
-    public void onClose(Session session) {
-        if (!StringUtils.isEmpty(token)) {
-            sessionMap.put(token, null);
-        }
-        //offline
-    }
+
 }

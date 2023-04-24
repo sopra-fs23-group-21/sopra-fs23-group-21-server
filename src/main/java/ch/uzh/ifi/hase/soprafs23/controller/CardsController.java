@@ -9,8 +9,6 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-//import java.util.Map;
-//import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -43,7 +41,7 @@ public class CardsController extends BaseController {
     public Result addUser(Integer roomCode){
         GameContext gameContext = GAME_ROOM.get(roomCode);
         if(Objects.isNull(gameContext)){
-            return Result.error("未找到此房间");
+            return Result.error("未找到此房间 There is no found room");
         }
         gameContext.prepare(getUser());
         return Result.success();
