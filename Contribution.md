@@ -108,3 +108,19 @@ For each week, everyone should write down your contributions with following info
 - Add testing for register#121
 - Add testing initiation#115
 - Add testing to pass#110
+## Weimin Yang
+- prepare buttons #12
+- The profile page and user can edit profile #17
+- prepare background for the app #19
+- prepare api tools for app #22
+- reset passwords #30
+- Exception #28
+- Theme #32
+- add testing to create game #112
+- add testing about contend #113
+- add testing on continueGame #114
+- add testing on initial user #117
+- add testing on get user detail #119
+- add testing on offline #120
+- debug
+- write the M3 report
