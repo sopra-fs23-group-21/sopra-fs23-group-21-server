@@ -34,8 +34,7 @@ public class UserService {
     checkIfUserExists(newUser);
     // saves the given entity but data is only persisted in the database once
     // flush() is called
-    newUser = userRepository.save(newUser);
-    userRepository.flush();
+    userRepository.save(newUser);
 
     log.debug("Created Information for User: {}", newUser);
     return newUser;
@@ -128,6 +127,6 @@ public class UserService {
             User save = userRepository.save(byId);
             return save;
         }
-        throw new RuntimeException("两次密码不一致！Make sure the passwords are consistent! ");
+        throw new RuntimeException("Make sure the passwords are consistent! ");
     }
 }

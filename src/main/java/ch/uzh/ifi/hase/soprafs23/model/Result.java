@@ -33,7 +33,7 @@ public class Result<T> implements Serializable  {
 
 
     /**
-     *
+     * 得到返回结果
      */
     public static Result success(){
         return Result.builder().status(200).build();
