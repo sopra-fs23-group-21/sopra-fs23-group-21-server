@@ -108,6 +108,8 @@ For each week, everyone should write down your contributions with following info
 - Add testing for register#121
 - Add testing initiation#115
 - Add testing to pass#110
+- debug
+- write the M3 report
 ## Weimin Yang
 - prepare buttons #12
 - The profile page and user can edit profile #17
