@@ -125,18 +125,15 @@ For each week, everyone should write down your contributions with following info
 - debug
 - write the M3 report
 ## Zhi Wang
-- prepare buttons #12
-- The profile page and user can edit profile #17
-- prepare background for the app #19
-- prepare api tools for app #22
-- reset passwords #30
-- Exception #28
-- Theme #32
-- add testing to create game #112
-- add testing about contend #113
-- add testing on continueGame #114
-- add testing on initial user #117
-- add testing on get user detail #119
-- add testing on offline #120
+- Client:
+- set schema rules for necesary fileds like username and password(client) #2
+- create component to display cards when players play the game(client) #27
+- create homepage component(client) #34
+- Create a component to verify the user's account(client) #36
+
+- Test:
+- test Add User to the game room #107
+- test play cards #109
+- test user login #118
 - debug
 - write the M3 report
