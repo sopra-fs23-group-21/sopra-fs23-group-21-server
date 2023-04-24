@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+
 
 
 
@@ -104,22 +104,22 @@ public class UserControllerTest {
                 .andDo(MockMvcResultHandlers.print()).andReturn();
     }
 
+    @Test
+    void testUpdatePass() throws Exception {
+        // Setup
+        // Configure UserService.updatePassword(...).
+        final User user = new User(0, "name", "password", "username", "token", UserStatus.ONLINE);
+        when(userService.updatePassword(new UserReqVo(),
+                new User(0, "name", "password", "username", "token", UserStatus.ONLINE))).thenReturn(user);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // Run the test
+        mockMvc.perform(post("/user/updatePass")
+                        .content("content").contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON).content(gson.toJson(user)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+    }
 
     @Test
     void testUpdateDetail() throws Exception {

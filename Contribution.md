@@ -137,5 +137,6 @@ For each week, everyone should write down your contributions with following info
 - Test Add User to the game room #107
 - Test play cards #109
 - Test user login #118
+- Test update password #123
 - Debug
 - Write the M3 report
