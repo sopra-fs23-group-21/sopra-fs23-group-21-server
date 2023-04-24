@@ -163,7 +163,7 @@ public class GameContext implements Serializable {
     }
 
     /**
-     * let the user to join a room
+     * let the user join a room
      */
     public synchronized void prepare(User user){
 
@@ -172,7 +172,7 @@ public class GameContext implements Serializable {
             return;
         }
         if(isGameOver){
-            throw new RuntimeException("the game already starts, you can not join");
+            throw new RuntimeException("the game already starts, you can not join in");
         }
         if(this.userList.size()>=3) {
             throw new RuntimeException("the room is already full");
@@ -262,7 +262,7 @@ public class GameContext implements Serializable {
     /**
      * 发牌
      */
-    public void sendCard(){
+    private void sendCard(){
 
         this.start = (int) (Math.random() * 3);
 
@@ -298,7 +298,7 @@ public class GameContext implements Serializable {
     /**
      * 通知抢地主
      */
-    public void contend(){
+    private void contend(){
         List<UserVo> collect = this.userList.stream()
                 .filter(userVo -> Objects.isNull(userVo.getContend())).collect(Collectors.toList());
         //第二轮抢地主 如果还有两位或者三位争取 只看首位是否需要
@@ -355,7 +355,7 @@ public class GameContext implements Serializable {
     /**
      * 分配地主
      */
-    public void elect(){
+    private void elect(){
 
         for (UserVo userVo : this.userList) {
             if(Objects.isNull(userVo.getContend())){
@@ -386,6 +386,9 @@ public class GameContext implements Serializable {
         sync();
     }
 
+    /***
+     * 游戏结束
+     */
     private void gameOver(){
         this.isGameOver = true;
         this.userList.forEach(list->{
@@ -396,10 +399,9 @@ public class GameContext implements Serializable {
     }
 
     /***
-     * 游戏结束
+     * 重新开始
      */
     private void restart(){
-//        this.userList.forEach(UserVo::init);
         this.gameStatus = 1;
         this.last = null;
         this.winner = null;

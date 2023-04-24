@@ -2,7 +2,6 @@ package ch.uzh.ifi.hase.soprafs23.core;
 
 import ch.uzh.ifi.hase.soprafs23.constant.CombinationType;
 import ch.uzh.ifi.hase.soprafs23.model.Poker;
-import com.fasterxml.jackson.databind.ser.std.StdArraySerializers;
 import com.google.common.collect.Lists;
 import lombok.Data;
 
@@ -48,7 +47,7 @@ public class PokerCombination {
         else if (isThreeAndOne(card)) {
             this.combinationType = CombinationType.THREEANDONE;
         }
-        else if (isFourAndThree(card)) {
+        else if (isFourAndTwo(card)) {
             this.combinationType = CombinationType.FOURANDTWO;
         }
         else if (isContinuation(card)) {
@@ -70,7 +69,6 @@ public class PokerCombination {
 
     /**
      * 比较牌型
-     *
      * @param o
      * @return true可出牌，false不可出牌
      */
@@ -261,7 +259,7 @@ public class PokerCombination {
      * @param card
      * @return
      */
-    private boolean isFourAndThree(List<Poker> card) {
+    private boolean isFourAndTwo(List<Poker> card) {
         if (card.size() < 6) {
             return false;
         }
