@@ -80,7 +80,7 @@ class CardsControllerTest {
                         .param("roomCode", "0")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                //.andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
                 .andDo(MockMvcResultHandlers.print()).andReturn();
     }
 
