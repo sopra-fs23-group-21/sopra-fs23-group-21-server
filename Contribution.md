@@ -126,14 +126,14 @@ For each week, everyone should write down your contributions with following info
 - write the M3 report
 ## Zhi Wang
 - Client:
-- set schema rules for necesary fileds like username and password(client) #2
-- create component to display cards when players play the game(client) #27
-- create homepage component(client) #34
+- Set schema rules for necesary fileds like username and password(client) #2
+- Create component to display cards when players play the game(client) #27
+- Create homepage component(client) #34
 - Create a component to verify the user's account(client) #36
 
 - Test:
-- test Add User to the game room #107
-- test play cards #109
-- test user login #118
-- debug
-- write the M3 report
+- Test Add User to the game room #107
+- Test play cards #109
+- Test user login #118
+- Debug
+- Write the M3 report
