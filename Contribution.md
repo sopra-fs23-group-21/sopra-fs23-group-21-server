@@ -140,3 +140,11 @@ For each week, everyone should write down your contributions with following info
 - Test update password #123
 - Debug
 - Write the M3 report
+
+## XiongLi
+- Create user information fields information like username, password and etc, resolve #31
+- Create overview page component, resolve #38
+- Create room component and integrate it with WebSocket, resolve #39
+- Create verify confirmation component, resolve #40
+- Implement some basic configuration, resolve #41
+- Write the M3 report
