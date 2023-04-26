@@ -91,8 +91,6 @@ class UserServiceTest {
         assertEquals(newUser.getName(), userReqVo.getName());
     }
 
-
-
     @Test
     @DirtiesContext
     public void testCreateUser(){
