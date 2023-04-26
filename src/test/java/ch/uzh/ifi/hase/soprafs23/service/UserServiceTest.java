@@ -4,8 +4,10 @@ import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -43,6 +45,17 @@ class UserServiceTest {
 
         assertNotNull(user.getToken());
     }
+
+    @Test
+    @DirtiesContext
+    public void testLogin() {
+
+        User found = userService.login(user.getUsername(),user.getPassword());
+        assertNotNull(found.getId());
+        assertEquals(found.getName(), user.getName());
+        assertEquals(found.getUsername(), user.getUsername());
+    }
+
 
 
 }
