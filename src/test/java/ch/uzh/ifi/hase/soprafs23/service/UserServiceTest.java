@@ -56,6 +56,19 @@ class UserServiceTest {
         assertEquals(found.getUsername(), user.getUsername());
     }
 
+    @Test
+    @DirtiesContext
+    public void testGetUserByToken() {
+
+        User found = userService.getUserByToken(user.getToken());
+        assertNotNull(found.getId());
+        assertEquals(found.getName(), user.getName());
+        assertEquals(found.getUsername(), user.getUsername());
+        assertEquals(found.getToken(), user.getToken());
+        assertEquals(found.getStatus(), user.getStatus());
+    }
+
+
 
 
 }
