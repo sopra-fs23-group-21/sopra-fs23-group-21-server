@@ -2,6 +2,7 @@ package ch.uzh.ifi.hase.soprafs23.service;
 
 import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
+import ch.uzh.ifi.hase.soprafs23.model.UserReqVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -90,4 +91,15 @@ class UserServiceTest {
             user =  userService.createUser(user);
         }catch (Exception e){}    }
 
+    @Test
+    @DirtiesContext
+    public void testOffline(){
+        UserReqVo userReqVo = new UserReqVo();
+        userReqVo.setName("rename");
+
+        userService.offline(user);
+        User userByToken = userService.getUserByToken(user.getToken());
+        assertEquals(userByToken.getStatus(), UserStatus.OFFLINE);
+
+    }
 }
