@@ -69,6 +69,29 @@ class UserServiceTest {
         assertEquals(found.getStatus(), user.getStatus());
     }
 
+    @Test
+    @DirtiesContext
+    public void testUpdatePassword(){
+        UserReqVo userReqVo = new UserReqVo();
+        userReqVo.setPassword("123@123");
+        userReqVo.setRepeatPassword("123@123");
+        User newUser = userService.updatePassword(userReqVo, user);
+        assertEquals(newUser.getPassword(), userReqVo.getPassword());
+    }
+
+    @Test
+    @DirtiesContext
+    public void testUpdateDetail() {
+        UserReqVo userReqVo = new UserReqVo();
+        userReqVo.setName("nweName");
+        userReqVo.setRepeatPassword("firstname@123");
+        userReqVo.setPassword("firstname@123");
+
+        User newUser =  userService.updateDetail(userReqVo,user);
+        assertEquals(newUser.getName(), userReqVo.getName());
+    }
+
+
 
     @Test
     @DirtiesContext
@@ -103,13 +126,5 @@ class UserServiceTest {
 
     }
 
-    @Test
-    @DirtiesContext
-    public void testUpdatePassword(){
-        UserReqVo userReqVo = new UserReqVo();
-        userReqVo.setPassword("123@123");
-        userReqVo.setRepeatPassword("123@123");
-        User newUser = userService.updatePassword(userReqVo, user);
-        assertEquals(newUser.getPassword(), userReqVo.getPassword());
-    }
+
 }
