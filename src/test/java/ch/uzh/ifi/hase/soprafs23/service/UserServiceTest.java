@@ -102,4 +102,14 @@ class UserServiceTest {
         assertEquals(userByToken.getStatus(), UserStatus.OFFLINE);
 
     }
+
+    @Test
+    @DirtiesContext
+    public void testUpdatePassword(){
+        UserReqVo userReqVo = new UserReqVo();
+        userReqVo.setPassword("123@123");
+        userReqVo.setRepeatPassword("123@123");
+        User newUser = userService.updatePassword(userReqVo, user);
+        assertEquals(newUser.getPassword(), userReqVo.getPassword());
+    }
 }
