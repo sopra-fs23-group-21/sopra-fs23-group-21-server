@@ -69,6 +69,25 @@ class UserServiceTest {
     }
 
 
-
+    @Test
+    @DirtiesContext
+    public void testCreateUser(){
+        user = new User();
+        user.setName("Firstname Lastname");
+        user.setUsername("firstname@lastname");
+        user.setPassword("firstname@123");
+        user.setStatus(UserStatus.OFFLINE);
+        try {
+            user =  userService.createUser(user);
+        }catch (Exception e){}
+        user.setUsername("firstname@lastname1");
+        try {
+            user =  userService.createUser(user);
+        }catch (Exception e){}
+        user.setUsername("firstname@lastname");
+        user.setName("Firstname Lastname2");
+        try {
+            user =  userService.createUser(user);
+        }catch (Exception e){}    }
 
 }
