@@ -158,3 +158,4 @@ For each week, everyone should write down your contributions with following info
 - Update dashboard, fix #6
 - Debug
 - Presentation Preparation
+- M3 Report
