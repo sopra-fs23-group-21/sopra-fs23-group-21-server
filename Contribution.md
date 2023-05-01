@@ -153,9 +153,15 @@ For each week, everyone should write down your contributions with following info
 # Week5(April 25 - May 2)
 ## Jing Cao
 - Add testing for updateUserDetail, updatePassword, offline, createuser, getuserbytoken, login, resolve #137
-- Re-upload image and icon, fix #26
-- Change confirmation message, fix #40
-- Update dashboard, fix #6
 - Debug
 - Presentation Preparation
-- M3 Report
+
+## Zhi Wang
+- test play cards function(fix code in the gameContextUnderTest)
+- test quit game function(fix code in the gameContextUnderTest)
+- Modify the configuration file to complete the Google Cloud deployment
+- Modify the configuration file to complete the Sonar Cloud deployment
+- test play cards function(fix code)
+- test play cards function(fix code)
+- Debug
+- Presentation Preparation
