@@ -148,3 +148,10 @@ For each week, everyone should write down your contributions with following info
 - Create verify confirmation component, resolve #40
 - Implement some basic configuration, resolve #41
 - Write the M3 report
+
+
+# Week5(April 25 - May 2)
+## Jing Cao
+- Add testing for updateUserDetail, updatePassword, offline, createuser, getuserbytoken, login, resolve #137
+- Debug
+- Presentation Preparation
