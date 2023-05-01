@@ -153,5 +153,8 @@ For each week, everyone should write down your contributions with following info
 # Week5(April 25 - May 2)
 ## Jing Cao
 - Add testing for updateUserDetail, updatePassword, offline, createuser, getuserbytoken, login, resolve #137
+- Re-upload image and icon, fix #26
+- Change confirmation message, fix #40
+- Update dashboard, fix #6
 - Debug
 - Presentation Preparation
