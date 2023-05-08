@@ -168,3 +168,19 @@ For each week, everyone should write down your contributions with following info
 - test play cards function(fix code)
 - Debug
 - Presentation Preparation
+
+## Weimin Yang
+- add integration test 
+- add testing on roomsync
+- Debug
+- Presentation Preparation
+
+# Week6(May 3 - May 9)
+## Jing Cao
+## Zhi Wang
+## XiongLi
+## Weimin Yang
+- add testing on inital game(include user, cards) # 130
+- add testing on play game(including running for the landlord, deal cards) # 136
+
+
