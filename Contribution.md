@@ -178,7 +178,7 @@ For each week, everyone should write down your contributions with following info
 # Week6(May 3 - May 9)
 ## Jing Cao
 - Implement testing to initiation to check user login status #139
-- Implement testing for the function to login by name, close #140
+- Implement testing for the function to login by name #140
 - Implement testing for the function to login by token #141
 
 ## Zhi Wang
