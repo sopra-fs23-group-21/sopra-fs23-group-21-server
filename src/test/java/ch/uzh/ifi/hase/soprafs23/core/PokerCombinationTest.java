@@ -149,4 +149,21 @@ class PokerCombinationTest {
         // Verify the results
     }
 
+    @Test
+    void testIsDoubleContinuationMaxValue() {
+        // Setup
+        final PokerCombination pokerCombination = new PokerCombination();
+        pokerCombination.setCombinationType(CombinationType.ONE);
+        pokerCombination.setCard(List.of(Poker.builder()
+                .value(0)
+                .build()));
+        pokerCombination.setUserId(0);
+
+        // Run the test
+        final Integer result = pokerCombinationUnderTest.isDoubleContinuationMaxValue(pokerCombination);
+
+        // Verify the results
+        assertThat(result).isEqualTo(0);
+    }
+
 }

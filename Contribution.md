@@ -179,6 +179,7 @@ For each week, everyone should write down your contributions with following info
 ## Jing Cao
 ## Zhi Wang
 - Add test the use of poker Combination(double cards, three cards, three card and one) # 131
+- Add test the use of poker Combination(consecutive double cards) # 132
 ## XiongLi
 ## Weimin Yang
 - add testing on inital game(include user, cards) # 130
