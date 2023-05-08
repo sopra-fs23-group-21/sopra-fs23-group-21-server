@@ -36,6 +36,18 @@ public class UserRepositoryIntegrationTest {
     }
 
     @Test
+    public void findByUserName_success() {
+        // when
+        User found = userRepository.findByUsername("firstname@lastname");
+        // then
+        assertNotNull(found.getId());
+        assertEquals(found.getName(), user.getName());
+        assertEquals(found.getUsername(), user.getUsername());
+        assertEquals(found.getToken(), user.getToken());
+        assertEquals(found.getStatus(), user.getStatus());
+    }
+
+    @Test
     public void findByName_success() {
         // when
         User found = userRepository.findByName("Firstname Lastname");
