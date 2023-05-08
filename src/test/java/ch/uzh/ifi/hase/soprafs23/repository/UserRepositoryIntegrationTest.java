@@ -8,6 +8,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @DataJpaTest
 public class UserRepositoryIntegrationTest {
 
@@ -30,6 +33,19 @@ public class UserRepositoryIntegrationTest {
         user.setToken("1");
         entityManager.persist(user);
         entityManager.flush();
+    }
+
+    @Test
+    public void findByName_success() {
+        // when
+        User found = userRepository.findByName("Firstname Lastname");
+
+        // then
+        assertNotNull(found.getId());
+        assertEquals(found.getName(), user.getName());
+        assertEquals(found.getUsername(), user.getUsername());
+        assertEquals(found.getToken(), user.getToken());
+        assertEquals(found.getStatus(), user.getStatus());
     }
 
 
