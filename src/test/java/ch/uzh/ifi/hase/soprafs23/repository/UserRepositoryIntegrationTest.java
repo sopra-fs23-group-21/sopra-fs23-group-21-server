@@ -48,5 +48,17 @@ public class UserRepositoryIntegrationTest {
         assertEquals(found.getStatus(), user.getStatus());
     }
 
+    @Test
+    public void findByToken_success() {
+        // when
+        User found = userRepository.findByToken("1");
+        // then
+        assertNotNull(found.getId());
+        assertEquals(found.getName(), user.getName());
+        assertEquals(found.getUsername(), user.getUsername());
+        assertEquals(found.getToken(), user.getToken());
+        assertEquals(found.getStatus(), user.getStatus());
+    }
+
 
 }
