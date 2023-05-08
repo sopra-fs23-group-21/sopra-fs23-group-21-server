@@ -178,6 +178,7 @@ For each week, everyone should write down your contributions with following info
 # Week6(May 3 - May 9)
 ## Jing Cao
 ## Zhi Wang
+- Add test the use of poker Combination(double cards, three cards, three card and one) # 131
 ## XiongLi
 ## Weimin Yang
 - add testing on inital game(include user, cards) # 130
