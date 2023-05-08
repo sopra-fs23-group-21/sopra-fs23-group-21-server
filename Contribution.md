@@ -180,6 +180,7 @@ For each week, everyone should write down your contributions with following info
 - Implement testing to initiation to check user login status #139
 - Implement testing for the function to login by name #140
 - Implement testing for the function to login by token #141
+- Implement testing for the function to login by username #142
 
 ## Zhi Wang
 - Add test the use of poker Combination(double cards, three cards, three card and one) # 131
