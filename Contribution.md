@@ -169,6 +169,11 @@ For each week, everyone should write down your contributions with following info
 - Debug
 - Presentation Preparation
 
+## Xiong Li
+- Improve the UI
+- Debug
+- Prepare report
+
 ## Weimin Yang
 - add integration test 
 - add testing on roomsync
