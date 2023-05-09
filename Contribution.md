@@ -187,6 +187,8 @@ For each week, everyone should write down your contributions with following info
 - Add test the use of poker Combination(consecutive double cards) # 132
 
 ## XiongLi
+- Design an intuitive and user-friendly interface that makes it easy for players to navigate the game and understand the controls. #128
+- Make the result of the game to be seen obviously. #129
 
 ## Weimin Yang
 - add testing on inital game(include user, cards) # 130
