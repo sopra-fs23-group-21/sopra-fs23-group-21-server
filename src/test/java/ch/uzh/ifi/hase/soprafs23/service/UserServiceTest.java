@@ -1,6 +1,7 @@
 package ch.uzh.ifi.hase.soprafs23.service;
 
 import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
+import ch.uzh.ifi.hase.soprafs23.controller.UserController;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
 import ch.uzh.ifi.hase.soprafs23.model.UserReqVo;
 import lombok.extern.slf4j.Slf4j;
@@ -122,6 +123,30 @@ class UserServiceTest {
         User userByToken = userService.getUserByToken(user.getToken());
         assertEquals(userByToken.getStatus(), UserStatus.OFFLINE);
 
+    }
+
+    @Test
+    public void testUpdatePassword_ThrowsExceptionWhenPasswordsAreDifferent() {
+        // Create test data
+        UserReqVo userReqVo = new UserReqVo();
+        userReqVo.setPassword("newPassword");
+        userReqVo.setRepeatPassword("differentPassword");
+
+        User oldUser = new User();
+        oldUser.setId(1);
+        oldUser.setPassword("oldPassword");
+
+
+        // Define the expected exception
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            // Call the method under test
+            userService.updatePassword(userReqVo, oldUser);
+        });
+
+        // Check if the message of the exception is as expected
+        String expectedMessage = "The password is different!";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
 
