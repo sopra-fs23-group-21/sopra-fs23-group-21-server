@@ -36,4 +36,19 @@ public class UserReqVoTest {
 
     }
 
+    @Test
+    public void testUserReqVoWithNullRepeatPassword() {
+        // Test the case where repeatPassword is null
+        UserReqVo userReqVo = new UserReqVo();
+        assertNull(userReqVo.getRepeatPassword());
+    }
+
+    @Test
+    public void testUserReqVoWithNonNullRepeatPassword() {
+        // Test the case where repeatPassword is not null
+        UserReqVo userReqVo = new UserReqVo();
+        userReqVo.setRepeatPassword("password");
+        assertEquals("password", userReqVo.getRepeatPassword());
+    }
+
 }
