@@ -199,4 +199,9 @@ For each week, everyone should write down your contributions with following info
 - add testing on inital game(include user, cards) # 130
 - add testing on play game(including running for the landlord, deal cards) # 136
 
+# Week6(May 3 - May 9)
+## Jing Cao
+- Add codes to improve testing coverage of UserReqVo to change the password #143
+- Add testing for exceptions when the password is different #144
+
 
