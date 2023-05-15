@@ -208,4 +208,9 @@ For each week, everyone should write down your contributions with following info
 - Add test the use of poker Combination(four cards, four cards and two) # 134
 - Add test the use of poker Combination(consecutive double cards,consecutive three cards) # 133
 
+## Xiong Li
+- Change the layout of the room created, resolve #43
+- Make room page's color appropriate, resolve #42
+
+
 
