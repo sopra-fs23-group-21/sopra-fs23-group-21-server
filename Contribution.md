@@ -211,6 +211,9 @@ For each week, everyone should write down your contributions with following info
 ## Xiong Li
 - Change the layout of the room created, resolve #43
 - Make room page's color appropriate, resolve #42
+## Weimin Yang
+- BetaTest improve: the 'ready?' button is available, there are must three users in the same room #147
+- BetaTesting Improvement: Adjusted UI font size and color to improve user experience #148
 
 
 
