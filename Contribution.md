@@ -200,3 +200,7 @@ For each week, everyone should write down your contributions with following info
 - add testing on play game(including running for the landlord, deal cards) # 136
 
 
+# Week7(May 10 - May 16)
+## XiongLi
+- Change the layout of the room created, resolve #43
+- Make room page's color appropriate, resolve #42
