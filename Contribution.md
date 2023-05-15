@@ -206,5 +206,6 @@ For each week, everyone should write down your contributions with following info
 
 ## Zhi Wang
 - Add test the use of poker Combination(four cards, four cards and two) # 134
+- Add test the use of poker Combination(consecutive double cards,consecutive three cards) # 133
 
 
