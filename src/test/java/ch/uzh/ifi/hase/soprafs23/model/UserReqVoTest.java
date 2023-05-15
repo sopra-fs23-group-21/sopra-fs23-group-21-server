@@ -40,6 +40,7 @@ public class UserReqVoTest {
     public void testUserReqVoWithNullRepeatPassword() {
         // Test the case where repeatPassword is null
         UserReqVo userReqVo = new UserReqVo();
+        userReqVo.setRepeatPassword(null);
         assertNull(userReqVo.getRepeatPassword());
     }
 
@@ -49,6 +50,20 @@ public class UserReqVoTest {
         UserReqVo userReqVo = new UserReqVo();
         userReqVo.setRepeatPassword("password");
         assertEquals("password", userReqVo.getRepeatPassword());
+    }
+
+    @Test
+    public void testUserReqVoWithEmptyRepeatPassword() {
+        UserReqVo userReqVo = new UserReqVo();
+        userReqVo.setRepeatPassword("");
+        assertEquals("", userReqVo.getRepeatPassword());
+    }
+
+    @Test
+    public void testUserReqVoWithDifferentRepeatPassword() {
+        UserReqVo userReqVo = new UserReqVo();
+        userReqVo.setRepeatPassword("different");
+        assertEquals("different", userReqVo.getRepeatPassword());
     }
 
 }
