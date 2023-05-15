@@ -166,4 +166,18 @@ class PokerCombinationTest {
         assertThat(result).isEqualTo(0);
     }
 
+    @Test
+    void testIsFourAndTwoMaxValue() {
+        // Setup
+        final PokerCombination pokerCombination = new PokerCombination();
+        pokerCombination.setCombinationType(CombinationType.ONE);
+        pokerCombination.setCard(List.of(new Poker(1,1),new Poker(1,1),new Poker(1,1),new Poker(1,1),new Poker(2,1),new Poker(3,1)));
+        pokerCombination.setUserId(0);
+
+        // Run the test
+        final Integer result = pokerCombinationUnderTest.isFourAndTwoMaxValue(pokerCombination);
+
+        // Verify the results
+        assertNotNull(result);
+    }
 }

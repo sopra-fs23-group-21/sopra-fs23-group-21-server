@@ -204,4 +204,7 @@ For each week, everyone should write down your contributions with following info
 - Add codes to improve testing coverage of UserReqVo to change the password #143
 - Add testing for exceptions when the password is different #144
 
+## Zhi Wang
+- Add test the use of poker Combination(four cards, four cards and two) # 134
+
 
