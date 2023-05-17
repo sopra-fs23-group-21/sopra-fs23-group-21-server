@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@Data
+//@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -62,4 +62,36 @@ public class Result<T> implements Serializable  {
 //    public  static  Result<Object> error(String msg,Integer status){
 //        return Result.builder().status(status).msg(msg).build();
 //    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

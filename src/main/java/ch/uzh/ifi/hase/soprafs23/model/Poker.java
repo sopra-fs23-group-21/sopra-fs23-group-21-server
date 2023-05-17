@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Data
+//@Data
 
 public class Poker implements Comparable<Poker>{
 
@@ -24,5 +24,21 @@ public class Poker implements Comparable<Poker>{
     @Override
     public int compareTo(Poker o){
         return this.value - o.getValue();
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }
