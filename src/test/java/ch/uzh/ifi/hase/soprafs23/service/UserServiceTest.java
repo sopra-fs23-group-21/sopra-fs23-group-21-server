@@ -4,6 +4,7 @@ import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs23.controller.UserController;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
 import ch.uzh.ifi.hase.soprafs23.model.UserReqVo;
+import ch.uzh.ifi.hase.soprafs23.model.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
+import com.google.common.collect.Lists;
 
 
 @Slf4j
@@ -160,6 +162,15 @@ class UserServiceTest {
         String expectedMessage = "The password is different!";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DirtiesContext
+    void testCompareTo() {
+        UserVo userVo = new UserVo(user);
+        userVo.equals(null);
+        userVo.equals(new Object());
+        userVo.setHandCard(Lists.newArrayList());
     }
 
 

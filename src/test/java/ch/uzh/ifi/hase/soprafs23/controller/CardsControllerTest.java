@@ -101,6 +101,7 @@ class CardsControllerTest {
         final MockHttpServletResponse response = mockMvc.perform(post("/cards/contend")
                         .param("roomCode", "0")
                         .param("isContend", "false")
+                        .header("Authorization","1")
                         .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
@@ -121,6 +122,16 @@ class CardsControllerTest {
                         .contentType(MediaType.ALL)
                         .content("content").contentType(MediaType.APPLICATION_JSON)
                         .content(gson.toJson(pokerCombination))
+                        .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+
+        mockMvc.perform(post("/cards/pay/{roomCode}", 2001)
+                        // 参数类型为JSON
+                        .contentType(MediaType.ALL)
+                        .content("content").contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(pokerCombination))
+                        .header("Authorization","0")
                         .accept(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk())
 //                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
                 .andDo(MockMvcResultHandlers.print()).andReturn();
