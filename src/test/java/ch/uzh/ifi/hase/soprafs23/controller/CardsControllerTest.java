@@ -34,7 +34,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WebMvcTest(CardsController.class)
 class CardsControllerTest {
 
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -42,7 +41,6 @@ class CardsControllerTest {
     private RoomSync mockRoomSync;
 
     private Gson gson = new Gson();
-
 
     User user;
     @BeforeEach
