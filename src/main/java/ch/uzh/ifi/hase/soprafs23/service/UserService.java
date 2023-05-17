@@ -122,6 +122,7 @@ public class UserService {
     public User updateDetail(UserReqVo userReqVo,User old){
         User byId = userRepository.findById(old.getId()).get();
         byId.setName(userReqVo.getName());
+        byId.setUsername(userReqVo.getUsername());
         if(userReqVo.getPassword().equals(userReqVo.getRepeatPassword())){
             byId.setPassword(userReqVo.getRepeatPassword());
             User save = userRepository.save(byId);

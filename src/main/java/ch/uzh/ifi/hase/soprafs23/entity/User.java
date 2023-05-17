@@ -22,7 +22,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "user")
 @Data
-@Builder
+//@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements Serializable {

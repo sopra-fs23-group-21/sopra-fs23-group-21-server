@@ -19,11 +19,11 @@ import java.util.Objects;
 
 @Component
 @ServerEndpoint(value = "/ws/ddz/sync/{roomCode}/{token}")
-@Data
+//@Data
 public class GameSyncController {
 
 
-    private Session session;
+//    private Session session;
 
     private UserService userService;
 
@@ -31,9 +31,13 @@ public class GameSyncController {
 
     private GameContext gameContext;
 
-    private String token;
+//    private String token;
+//
+//    private String roomCode;
 
-    private String roomCode;
+    public void setUserService(UserService userService){
+        this.userService = userService;
+    }
 
     private Gson gson = new Gson();
 
@@ -50,17 +54,22 @@ public class GameSyncController {
      */
     @OnOpen
     public void onOpen(Session session, @PathParam(value = "token") String token, @PathParam(value = "roomCode") Integer roomCode) {
-        this.session = session;
-        this.token = token;
+//        this.session = session;
+//        this.token = token;
         //get the room
         gameContext = CardsController.GAME_ROOM.get(roomCode);
         User user = userService.getUserByToken(token);
         userVo = gameContext.getUser(user.getId());
-        if(Objects.isNull(userVo)){
-            session.getAsyncRemote().sendText(gson.toJson(Result.error("not in the room yet")));
+//        if(Objects.isNull(userVo)){
+//            session.getAsyncRemote().sendText(gson.toJson(Result.error("not in the room yet")));
+//        }
+//        userVo.setSession(session);
+//        gameContext.sync(userVo.getId());
+        if(Objects.nonNull(userVo)){
+            userVo.setSession(session);
+            gameContext.sync(userVo.getId());
         }
-        userVo.setSession(session);
-        gameContext.sync(userVo.getId());
+
     }
 
 

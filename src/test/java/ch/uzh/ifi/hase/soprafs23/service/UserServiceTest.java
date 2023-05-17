@@ -87,9 +87,16 @@ class UserServiceTest {
         userReqVo.setName("nweName");
         userReqVo.setRepeatPassword("firstname@123");
         userReqVo.setPassword("firstname@123");
+        userReqVo.setUsername("firstname@lastname");
 
         User newUser =  userService.updateDetail(userReqVo,user);
         assertEquals(newUser.getName(), userReqVo.getName());
+        userReqVo.setRepeatPassword("first1name@123");
+        try {
+            userService.updateDetail(userReqVo,user);
+        }catch (Exception e){
+
+        }
     }
 
     @Test
@@ -111,7 +118,13 @@ class UserServiceTest {
         user.setName("Firstname Lastname2");
         try {
             user =  userService.createUser(user);
-        }catch (Exception e){}    }
+        }catch (Exception e){}
+        user.setUsername("firstname@lastname0");
+        user.setName("Firstname Lastname0");
+        try {
+            user =  userService.createUser(user);
+        }catch (Exception e){}
+    }
 
     @Test
     @DirtiesContext

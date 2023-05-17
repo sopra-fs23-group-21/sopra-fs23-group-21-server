@@ -126,6 +126,7 @@ public class UserControllerTest {
         // Setup
         // Configure UserService.updateDetail(...).
         final User user = new User(0, "name", "password", "username", "token", UserStatus.ONLINE);
+        new UserReqVo().setRepeatPassword("123");
         when(userService.updateDetail(new UserReqVo(),
                 new User(0, "name", "password", "username", "token", UserStatus.ONLINE))).thenReturn(user);
 

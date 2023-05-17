@@ -51,6 +51,7 @@ class GameSyncControllerTest {
         given(userService.getUserByToken("1")).willReturn(user);
 
         gameSyncController.onOpen(null,"1",0);
+        gameSyncController.onClose(null);
         // Verify the results
     }
 
