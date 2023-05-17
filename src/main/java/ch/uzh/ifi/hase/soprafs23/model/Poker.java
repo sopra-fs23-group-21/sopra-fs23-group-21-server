@@ -49,7 +49,7 @@ public class Poker implements Comparable<Poker>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Poker poker = (Poker) o;
-        return value.equals(poker.value) && type.equals(poker.type);
+        return  value == poker.value && type == poker.type ;
     }
 
     @Override
