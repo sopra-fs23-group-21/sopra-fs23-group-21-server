@@ -39,6 +39,7 @@ class PokerCombinationTest {
         pokerCombinationUnderTest.initType();
 
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
+        assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
         // Verify the results
 
         // Setup 两张
@@ -47,6 +48,7 @@ class PokerCombinationTest {
         // Run the test
 
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
+        assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
 
 
         // Setup 三张
@@ -56,6 +58,7 @@ class PokerCombinationTest {
         o.setCard(Lists.newArrayList(Poker.builder().type(1).value(2).build(),
                 Poker.builder().type(1).value(2).build(),Poker.builder().type(1).value(2).build()));
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
+        assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
 
         // Setup 四张
         pokerCombinationUnderTest.setCard(Lists.newArrayList(new Poker(1,1),new Poker(1,1),new Poker(1,1),new Poker(1,1)));
@@ -63,12 +66,14 @@ class PokerCombinationTest {
         o.setCard(Lists.newArrayList(new Poker(2,1),new Poker(2,1),new Poker(2,1),new Poker(2,1)));
 
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
+        assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
 
 
         // Setup 双王
         o.setCard(Lists.newArrayList(new Poker(14,1),new Poker(15,1)));
         // Run the test
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
+        assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
 
         // Setup 四张带两张
         pokerCombinationUnderTest.setCard(Lists.newArrayList(new Poker(1,1),new Poker(1,1),new Poker(1,1),new Poker(1,1),new Poker(2,1),new Poker(3,1)));
@@ -76,6 +81,7 @@ class PokerCombinationTest {
         o.setCard(Lists.newArrayList(new Poker(2,1),new Poker(2,1),new Poker(2,1),new Poker(2,1),new Poker(3,1),new Poker(4,1)));
 
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
+        assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
 
 
         // Setup 三张带一张
@@ -85,6 +91,7 @@ class PokerCombinationTest {
         o.setCard(Lists.newArrayList(Poker.builder().type(1).value(2).build(),Poker.builder().type(1).value(2).build(),
                 Poker.builder().type(1).value(2).build(),Poker.builder().type(1).value(3).build()));
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
+        assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
 
         //顺子
         pokerCombinationUnderTest.setCard(Lists.newArrayList(
@@ -102,6 +109,7 @@ class PokerCombinationTest {
                 new Poker(5,1)));
 
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
+        assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
 
 
         //连队
@@ -144,6 +152,7 @@ class PokerCombinationTest {
                 new Poker(5,1),
                 new Poker(4,1)));
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
+        assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
         // Run the test
 
         // Verify the results

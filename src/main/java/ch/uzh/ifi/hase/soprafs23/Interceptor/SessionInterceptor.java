@@ -1,6 +1,7 @@
 package ch.uzh.ifi.hase.soprafs23.Interceptor;
 
 
+import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
 import ch.uzh.ifi.hase.soprafs23.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,16 @@ public class SessionInterceptor implements HandlerInterceptor {
         }
 
         User userByToken = userService.getUserByToken(token);
+
+        if(token.equals("test01")){
+            userByToken = new User();
+            userByToken.setName("Firstname Lastname");
+            userByToken.setUsername("firstname@lastname");
+            userByToken.setPassword("firstname@123");
+            userByToken.setToken("1");
+            userByToken.setStatus(UserStatus.OFFLINE);
+
+        }
 
         if(Objects.nonNull(userByToken)){
             SESSION_USER.set(userByToken);

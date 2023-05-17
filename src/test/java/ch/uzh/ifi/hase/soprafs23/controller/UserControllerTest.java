@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -54,7 +55,7 @@ public class UserControllerTest {
         user.setPassword("firstname@123");
         user.setToken("1");
         user.setStatus(UserStatus.OFFLINE);
-
+        userService.createUser(user);
     }
 
     @Test
@@ -77,6 +78,7 @@ public class UserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     public void register() throws Exception {
 
         given(userService.createUser(any(User.class))).willReturn(user);
@@ -94,6 +96,7 @@ public class UserControllerTest {
                 .andDo(MockMvcResultHandlers.print()).andReturn();
     }
     @Test
+    @DirtiesContext
     void testGetUserDetail() throws Exception {
         // Setup
         // Run the test
@@ -105,6 +108,7 @@ public class UserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void testUpdatePass() throws Exception {
         // Setup
         // Configure UserService.updatePassword(...).
@@ -122,6 +126,7 @@ public class UserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void testUpdateDetail() throws Exception {
         // Setup
         // Configure UserService.updateDetail(...).
@@ -142,10 +147,20 @@ public class UserControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void testOffline() throws Exception {
         // Setup
         // Run the test
         mockMvc.perform(put("/user/offline")
+
+                        .header("Authorization","test01")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+//                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+        mockMvc.perform(put("/user/offline")
+                        .header("Authorization","0")
+
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
 //                 .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("123456@qq.com"))
