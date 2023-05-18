@@ -62,8 +62,7 @@ public class UserController extends BaseController{
 //修改资料
     @PutMapping("/updateDetail")
     public Result updateDetail(@RequestBody UserReqVo user ){
-        userService.updateDetail(user,getUser());
-        return Result.success();
+        return Result.success(userService.updateDetail(user,getUser()));
     }
 
 
