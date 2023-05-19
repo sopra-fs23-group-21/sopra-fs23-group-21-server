@@ -224,9 +224,6 @@ For each week, everyone should write down your contributions with following info
 - Add testing to improve the line coverage(fix code) # 135
 - implement the function to let users change their username and password(fix code for beta test) #17
 
-
-
-# Week7(May 10 - May 16)
-## XiongLi
-- Change the layout of the room created, resolve #43
-- Make room page's color appropriate, resolve #42
+## Xiong Li
+- Make update user profile possible #46
+- Improve UI for profile update page #47
