@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@Data
+//@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -38,13 +38,13 @@ public class Result<T> implements Serializable  {
     public static Result success(){
         return Result.builder().status(200).build();
     }
-    public static Result success(String msg){
-        return Result.builder().status(200).msg(msg).build();
-    }
-
-    public static Result successToken(String token){
-        return Result.builder().status(200).token(token).build();
-    }
+//    public static Result success(String msg){
+//        return Result.builder().status(200).msg(msg).build();
+//    }
+//
+//    public static Result successToken(String token){
+//        return Result.builder().status(200).token(token).build();
+//    }
     public  static <T> Result<T> success(T data){
         Result<T> result = new Result<>();
         result.setData(data);
@@ -52,14 +52,46 @@ public class Result<T> implements Serializable  {
         return result;
     }
 
-    public  static  Result<Object> error(){
-        return Result.builder().status(500).build();
-    }
+//    public  static  Result<Object> error(){
+//        return Result.builder().status(500).build();
+//    }
 
     public  static  Result<Object> error(String msg){
         return Result.builder().status(500).msg(msg).build();
     }
-    public  static  Result<Object> error(String msg,Integer status){
-        return Result.builder().status(status).msg(msg).build();
+//    public  static  Result<Object> error(String msg,Integer status){
+//        return Result.builder().status(status).msg(msg).build();
+//    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

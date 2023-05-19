@@ -199,6 +199,28 @@ For each week, everyone should write down your contributions with following info
 - add testing on inital game(include user, cards) # 130
 - add testing on play game(including running for the landlord, deal cards) # 136
 
+# Week6(May 10 - May 16)
+## Jing Cao
+- Add codes to improve testing coverage of UserReqVo to change the password #143
+- Add testing for exceptions when the password is different #144
+
+## Zhi Wang
+- Add test the use of poker Combination(four cards, four cards and two) # 134
+- Add test the use of poker Combination(consecutive double cards,consecutive three cards) # 133
+
+## Xiong Li
+- Change the layout of the room created, resolve #43
+- Make room page's color appropriate, resolve #42
+## Weimin Yang
+- BetaTest improve: the 'ready?' button is available, there are must three users in the same room #147
+- BetaTesting Improvement: Adjusted UI font size and color to improve user experience #148
+
+# Week7(May 17 - May 23)
+## Zhi Wang
+- Add testing to improve the line coverage(fix code) # 135
+- implement the function to let users change their username and password(fix code for beta test) #17
+
+
 
 # Week7(May 10 - May 16)
 ## XiongLi

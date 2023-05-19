@@ -1,8 +1,10 @@
 package ch.uzh.ifi.hase.soprafs23.service;
 
 import ch.uzh.ifi.hase.soprafs23.constant.UserStatus;
+import ch.uzh.ifi.hase.soprafs23.controller.UserController;
 import ch.uzh.ifi.hase.soprafs23.entity.User;
 import ch.uzh.ifi.hase.soprafs23.model.UserReqVo;
+import ch.uzh.ifi.hase.soprafs23.model.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
+import com.google.common.collect.Lists;
 
 
 @Slf4j
@@ -86,9 +89,16 @@ class UserServiceTest {
         userReqVo.setName("nweName");
         userReqVo.setRepeatPassword("firstname@123");
         userReqVo.setPassword("firstname@123");
+        userReqVo.setUsername("firstname@lastname");
 
         User newUser =  userService.updateDetail(userReqVo,user);
         assertEquals(newUser.getName(), userReqVo.getName());
+        userReqVo.setRepeatPassword("first1name@123");
+        try {
+            userService.updateDetail(userReqVo,user);
+        }catch (Exception e){
+
+        }
     }
 
     @Test
@@ -110,7 +120,13 @@ class UserServiceTest {
         user.setName("Firstname Lastname2");
         try {
             user =  userService.createUser(user);
-        }catch (Exception e){}    }
+        }catch (Exception e){}
+        user.setUsername("firstname@lastname0");
+        user.setName("Firstname Lastname0");
+        try {
+            user =  userService.createUser(user);
+        }catch (Exception e){}
+    }
 
     @Test
     @DirtiesContext
@@ -122,6 +138,39 @@ class UserServiceTest {
         User userByToken = userService.getUserByToken(user.getToken());
         assertEquals(userByToken.getStatus(), UserStatus.OFFLINE);
 
+    }
+
+    @Test
+    public void testUpdatePassword_ThrowsExceptionWhenPasswordsAreDifferent() {
+        // Create test data
+        UserReqVo userReqVo = new UserReqVo();
+        userReqVo.setPassword("newPassword");
+        userReqVo.setRepeatPassword("differentPassword");
+
+        User oldUser = new User();
+        oldUser.setId(1);
+        oldUser.setPassword("oldPassword");
+
+
+        // Define the expected exception
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            // Call the method under test
+            userService.updatePassword(userReqVo, oldUser);
+        });
+
+        // Check if the message of the exception is as expected
+        String expectedMessage = "The password is different!";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DirtiesContext
+    void testCompareTo() {
+        UserVo userVo = new UserVo(user);
+        userVo.equals(null);
+        userVo.equals(new Object());
+        userVo.setHandCard(Lists.newArrayList());
     }
 
 

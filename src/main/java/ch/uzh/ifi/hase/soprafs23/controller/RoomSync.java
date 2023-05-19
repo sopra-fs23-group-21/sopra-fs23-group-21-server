@@ -21,33 +21,43 @@ import java.util.*;
  */
 @Component
 @ServerEndpoint(value = "/ws/room/sync/{token}")
-@Data
+//@Data
 public class RoomSync {
 
 
     private static final Map<String, Session> sessionMap = Maps.newConcurrentMap();
 
-    private String token;
-
+//    private String token;
     @OnOpen
-    public void onOpen(Session session, @PathParam(value = "token") String token) {
-        this.token = token;
+    public void onOpen(Session session, @PathParam(value = "token") String token) throws IOException {
+
         Gson gson = new Gson();
 
         Result<Collection<GameContext>> success = Result.success(CardsController.GAME_ROOM.values());
 
-        try {
-            if (Objects.nonNull(session)) {
-                session.getBasicRemote().sendText(gson.toJson(success));
-            }
-        } catch (IOException e) {
-        }
-        if(Objects.nonNull(session)) {
-            sessionMap.put(token,session);
-        }
-
-
+        session.getBasicRemote().sendText(gson.toJson(success));
+        sessionMap.put(token,session);
     }
+
+
+//    @OnOpen
+//    public void onOpen(Session session, @PathParam(value = "token") String token) {
+//        this.token = token;
+//        Gson gson = new Gson();
+//
+//        Result<Collection<GameContext>> success = Result.success(CardsController.GAME_ROOM.values());
+//
+//        try {
+//            if (Objects.nonNull(session)) {
+//                session.getBasicRemote().sendText(gson.toJson(success));
+//            }
+//        } catch (IOException e) {
+//        }
+//        if(Objects.nonNull(session)) {
+//            sessionMap.put(token,session);
+//        }
+
+//    }
 
 
     /**

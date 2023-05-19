@@ -54,6 +54,7 @@ public class CardsController extends BaseController {
         GameContext gameContext = GAME_ROOM.get(roomCode);
         if (!gameContext.quitGame(getUser().getId())) {
             GAME_ROOM.remove(roomCode);
+
             roomSync.push();
         }
         return Result.success();

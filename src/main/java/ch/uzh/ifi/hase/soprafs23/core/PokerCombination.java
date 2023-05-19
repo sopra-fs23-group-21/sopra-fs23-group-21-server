@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  * 牌组对象
  */
-@Data
+//@Data
 public class PokerCombination {
 
 
@@ -393,5 +393,29 @@ public class PokerCombination {
         List<Poker> num = pokerCombination.getCard();
         Map<Integer, List<Poker>> collect = num.stream().collect(Collectors.groupingBy(Poker::getValue));
         return Collections.max(Lists.newArrayList(collect.keySet().iterator()));
+    }
+
+    public CombinationType getCombinationType() {
+        return combinationType;
+    }
+
+    public void setCombinationType(CombinationType combinationType) {
+        this.combinationType = combinationType;
+    }
+
+    public List<Poker> getCard() {
+        return card;
+    }
+
+    public void setCard(List<Poker> card) {
+        this.card = card;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

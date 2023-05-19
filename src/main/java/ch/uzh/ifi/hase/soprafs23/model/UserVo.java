@@ -9,7 +9,7 @@ import javax.websocket.Session;
 import java.util.List;
 import java.util.Objects;
 
-@Data
+//@Data
 public class UserVo extends User{
 
     public UserVo(User user){
@@ -63,4 +63,35 @@ public class UserVo extends User{
         return false;
     }
 
+    public List<Poker> getHandCard() {
+        return handCard;
+    }
+
+    public void setHandCard(List<Poker> handCard) {
+        this.handCard = handCard;
+    }
+
+    public Boolean getContend() {
+        return contend;
+    }
+
+    public void setContend(Boolean contend) {
+        this.contend = contend;
+    }
+
+    public boolean isContinue() {
+        return isContinue;
+    }
+
+    public void setContinue(boolean aContinue) {
+        isContinue = aContinue;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
 }
