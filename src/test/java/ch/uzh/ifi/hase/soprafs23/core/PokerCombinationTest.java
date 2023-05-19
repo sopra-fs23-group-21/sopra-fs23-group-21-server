@@ -288,5 +288,20 @@ class PokerCombinationTest {
         pokerCombinationUnderTest.initType();
 
         assertNotNull(pokerCombinationUnderTest.getCombinationType());
+
+        //Test DoubleCombination
+        pokerCombinationUnderTest.setCard(Lists.newArrayList(
+                new Poker(3,1),
+                new Poker(3,1),
+                new Poker(4,1),
+                new Poker(4,1),
+                new Poker(5,1),
+                new Poker(5,1)));
+        // Run the test
+        pokerCombinationUnderTest.initType();
+
+        assertNotNull(pokerCombinationUnderTest.getCombinationType());
+
+
     }
 }
