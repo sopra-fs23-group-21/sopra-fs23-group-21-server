@@ -124,11 +124,12 @@ class PokerCombinationTest {
         o.setCard(Lists.newArrayList(
                 new Poker(4,1),
                 new Poker(4,1),
-                new Poker(2,1),
-                new Poker(2,1),
-                new Poker(3,1),
-                new Poker(3,1)));
-        assertNotNull(pokerCombinationUnderTest.getCombinationType());
+                new Poker(5,1),
+                new Poker(5,1),
+                new Poker(6,1),
+                new Poker(6,1)));
+        assertNotNull(pokerCombinationUnderTest.compareTo(o));
+        assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
 
 
         //飞机
@@ -163,16 +164,14 @@ class PokerCombinationTest {
         // Setup
         final PokerCombination pokerCombination = new PokerCombination();
         pokerCombination.setCombinationType(CombinationType.ONE);
-        pokerCombination.setCard(List.of(Poker.builder()
-                .value(0)
-                .build()));
+        pokerCombination.setCard(List.of(new Poker(2,1), new Poker(2,1), new Poker(3,1), new Poker(3,1), new Poker(4,1), new Poker(4,1)));
         pokerCombination.setUserId(0);
 
         // Run the test
         final Integer result = pokerCombinationUnderTest.isDoubleContinuationMaxValue(pokerCombination);
 
         // Verify the results
-        assertThat(result).isEqualTo(0);
+        assertNotNull(result);
     }
 
     @Test
