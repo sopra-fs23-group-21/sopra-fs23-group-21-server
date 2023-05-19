@@ -227,3 +227,7 @@ For each week, everyone should write down your contributions with following info
 ## Xiong Li
 - Make update user profile possible #46
 - Improve UI for profile update page #47
+
+## Weimin Yang
+- Add testing for exception when login with incorrect password #154
+- Add testing for getPokerCombination to improve line coverage #155
