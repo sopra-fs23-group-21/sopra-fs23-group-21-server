@@ -10,9 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class PokerCombinationTest {
@@ -130,6 +128,7 @@ class PokerCombinationTest {
                 new Poker(6,1)));
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
         assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
+        assertTrue(pokerCombinationUnderTest.compareTo(o));
 
 
         //飞机
