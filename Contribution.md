@@ -215,5 +215,10 @@ For each week, everyone should write down your contributions with following info
 - BetaTest improve: the 'ready?' button is available, there are must three users in the same room #147
 - BetaTesting Improvement: Adjusted UI font size and color to improve user experience #148
 
+# Week7(May 17 - May 23)
+## Zhi Wang
+- Add testing to improve the line coverage(fix code) # 135
+- implement the function to let users change their username and password(fix code for beta test) #17
+
 
 
