@@ -153,9 +153,6 @@ class PokerCombinationTest {
                 new Poker(4,1)));
         assertNotNull(pokerCombinationUnderTest.compareTo(o));
         assertNotNull(pokerCombinationUnderTest.compareTo(pokerCombinationUnderTest));
-        // Run the test
-
-        // Verify the results
     }
 
     @Test
