@@ -173,5 +173,28 @@ class UserServiceTest {
         userVo.setHandCard(Lists.newArrayList());
     }
 
+    @Test
+    void testLoginWithIncorrectPassword() {
+// Prepare test data
+        String userName = "testUser";
+        String correctPassword = "correctPassword";
+        String incorrectPassword = "incorrectPassword";
+
+// Create a user with the correct password
+        User user = new User();
+        user.setUsername(userName);
+        user.setPassword(correctPassword);
+
+// Perform the login with incorrect password and assert the exception
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            User loggedInUser = userService.login(userName, incorrectPassword);
+        });
+
+        String expectedMessage = "Password is not correct";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 
 }

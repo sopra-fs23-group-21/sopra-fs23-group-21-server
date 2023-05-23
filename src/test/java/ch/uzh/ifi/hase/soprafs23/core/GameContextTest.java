@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class GameContextTest {
 
@@ -77,6 +78,18 @@ class GameContextTest {
         //退出游戏 EXIT THE GAME
         result = gameContextUnderTest.quitGame(0);
         assertThat(result).isTrue();
+    }
+
+    @Test
+    void testGetPokerCombination() {
+// Prepare test data
+        Integer id = 123;
+
+// Call the method
+        List<PokerCombination> result = gameContextUnderTest.getPokerCombination(id);
+
+// Assert that the returned list is null
+        assertNull(result);
     }
 
 }
