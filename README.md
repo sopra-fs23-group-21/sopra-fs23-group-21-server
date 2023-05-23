@@ -35,7 +35,7 @@ In this group project, we hope to develop a website to let users play the Dou Di
 
 ## High-level Components
 Most important components:
- [CardsController](https://github.com/sopra-fs23-group-21/sopra-fs23-group-21-server/blob/main/src/main/java/ch/uzh/ifi/hase/soprafs23/controller/CardsController.java)
+- [CardsController](https://github.com/sopra-fs23-group-21/sopra-fs23-group-21-server/blob/main/src/main/java/ch/uzh/ifi/hase/soprafs23/controller/CardsController.java)
 - [GameContext](https://github.com/sopra-fs23-group-21/sopra-fs23-group-21-server/blob/main/src/main/java/ch/uzh/ifi/hase/soprafs23/core/GameContext.java)
 - [PokerCombination](https://github.com/sopra-fs23-group-21/sopra-fs23-group-21-server/blob/main/src/main/java/ch/uzh/ifi/hase/soprafs23/core/PokerCombination.java)
 - [RoomSync](https://github.com/sopra-fs23-group-21/sopra-fs23-group-21-server/blob/main/src/main/java/ch/uzh/ifi/hase/soprafs23/controller/RoomSync.java)
