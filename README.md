@@ -48,7 +48,7 @@ It is responsible for creating game rooms, adding users to game rooms, managing 
 - call the continueGame() method of the game context, indicating that the current user wants to continue the game after passing a turn
 
 ### GameContext
-The GameContext class is a data class that holds the state of the game. It contains fields such as userList (a list of users participating in the game), pokers (the deck of cards), code (a code associated with the game room), isGameOver (a flag indicating whether the game is over), now (the index of the current player), start (the index of the starting player), and gameStatus (the status of the game). Its functionalities include: 
+The GameContext class is a data class that holds the state of the game. It contains fields such as userList (a list of users participating in the game), pokers (the deck of cards), code (a code associated with the game room), isGameOver (a flag indicating whether the game is over), now (the index of the current player), start (the index of the starting player), and gameStatus (the status of the game). Its functionalities include:
 - initializes the deck of cards by creating a list of Poker objects representing the cards
 - synchronizes the game state with the connected users by sending the updated game context via WebSocket communication
 - make it possible when a player wants to continue the game after skipping a turn
