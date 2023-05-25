@@ -41,6 +41,8 @@ class UserServiceTest {
         user.setUsername("firstname@lastname"+i);
         user.setPassword("firstname@123"+i);
         user.setStatus(UserStatus.OFFLINE);
+        user.setToken("token");
+        user.setId(1);
         try {
             user =  userService.createUser(user);
         }catch (Exception e){
@@ -133,6 +135,7 @@ class UserServiceTest {
     public void testOffline(){
         UserReqVo userReqVo = new UserReqVo();
         userReqVo.setName("rename");
+        userReqVo.setToken("Token");
 
         userService.offline(user);
         User userByToken = userService.getUserByToken(user.getToken());
